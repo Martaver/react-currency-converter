@@ -1,0 +1,128 @@
+{
+  "name": "react-ts-jspm-starter-kit",
+  "version": "0.6.0",
+  "description": "Modern & Minimalistic boilerplate for building modular apps with React - utilizing power of TypeScript, ES2016, Hot-Reload, async/await, ES Modules & in-browser transpiling powered by JSPM/SystemJS.",
+  "main": "server.js",
+  "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io/)",
+  "homepage": "https://github.com/piotrwitek/react-ts-jspm-starter-kit",
+  "repository": "https://github.com/piotrwitek/react-ts-jspm-starter-kit.git",
+  "bugs": "https://github.com/piotrwitek/react-ts-jspm-starter-kit/issues",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "jspm install",
+    "precommit": "npm run lint",
+    "prepush": "npm run lint && npm test",
+    "bundle-dev": "jspm bundle dev-bundle.config.js out/dev-bundle.js -id",
+    "unbundle": "jspm unbundle",
+    "bundle-deps": "jspm unbundle && jspm bundle react + react-dom deps-bundle.js --minify --skip-source-maps -i && cp jspm.config.js dist/ && cp jspm_packages/system.js dist/ && mv deps-bundle.js dist/ && jspm unbundle",
+    "bundle-app": "jspm build src/app - react - react-dom - plugin-typescript dist/app-bundle.js --minify --skip-source-maps",
+    "bundle-app-debug": "jspm build src/app - react - react-dom - plugin-typescript dist/app-bundle.js",
+    "build": "npm run bundle-app && npm run regenerator",
+    "build-all": "npm run build-deps && npm run build",
+    "build-debug": "npm run bundle-app-debug",
+    "build-deps": "npm run bundle-deps && npm run bundle-dev",
+    "regenerator": "cd out && cp ../dist/app-bundle.js . && regenerator -r app-bundle.js > app-bundle.regenerator.js && cp app-bundle.regenerator.js ../dist/app-bundle.js ",
+    "init-deploy": "mkdir dist && git clone https://github.com/piotrwitek/react-ts-jspm-starter-kit --branch gh-pages dist",
+    "deploy": "cd dist && git checkout gh-pages && git add --all && git commit -m \"New Release\" && git push",
+    "bd": "npm run build && npm run deploy",
+    "bdd": "npm run build-deps && npm run deploy",
+    "test": "jspm run src/test-runner | faucet",
+    "lint": "tslint ./src/**/*.ts*"
+  },
+  "devDependencies": {
+    "@types/blue-tape": "^0.1.29",
+    "@types/react": "^0.14.27",
+    "@types/react-dom": "^0.14.14",
+    "@types/tape": "^4.2.27",
+    "faucet": "0.0.1",
+    "husky": "^0.11.6",
+    "jspm": "^0.17.0-beta.24",
+    "jspm-hmr": "^0.4.2",
+    "regenerator": "^0.8.46",
+    "tslint": "^3.14.0",
+    "typescript": "^1.8.10"
+  },
+  "jspm": {
+    "name": "app",
+    "dependencies": {
+      "classnames": "npm:classnames@^2.2.5",
+      "css": "github:systemjs/plugin-css@^0.1.23",
+      "react-dom": "npm:react-dom@^15.2.1"
+    },
+    "devDependencies": {
+      "blue-tape": "npm:blue-tape@^0.2.0",
+      "plugin-typescript": "github:frankwallis/plugin-typescript@^4.0.16",
+      "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.6.0"
+    },
+    "peerDependencies": {
+      "assert": "github:jspm/nodelibs-assert@^0.2.0-alpha",
+      "buffer": "github:jspm/nodelibs-buffer@^0.2.0-alpha",
+      "child_process": "github:jspm/nodelibs-child_process@^0.2.0-alpha",
+      "constants": "github:jspm/nodelibs-constants@^0.2.0-alpha",
+      "crypto": "github:jspm/nodelibs-crypto@^0.2.0-alpha",
+      "domain": "github:jspm/nodelibs-domain@^0.2.0-alpha",
+      "events": "github:jspm/nodelibs-events@^0.2.0-alpha",
+      "fs": "github:jspm/nodelibs-fs@^0.2.0-alpha",
+      "http": "github:jspm/nodelibs-http@^0.2.0-alpha",
+      "https": "github:jspm/nodelibs-https@^0.2.0-alpha",
+      "module": "github:jspm/nodelibs-module@^0.2.0-alpha",
+      "net": "github:jspm/nodelibs-net@^0.2.0-alpha",
+      "os": "github:jspm/nodelibs-os@^0.2.0-alpha",
+      "path": "github:jspm/nodelibs-path@^0.2.0-alpha",
+      "process": "github:jspm/nodelibs-process@^0.2.0-alpha",
+      "react": "npm:react@^15.2.1",
+      "stream": "github:jspm/nodelibs-stream@^0.2.0-alpha",
+      "string_decoder": "github:jspm/nodelibs-string_decoder@^0.2.0-alpha",
+      "tty": "github:jspm/nodelibs-tty@^0.2.0-alpha",
+      "url": "github:jspm/nodelibs-url@^0.2.0-alpha",
+      "util": "github:jspm/nodelibs-util@^0.2.0-alpha",
+      "vm": "github:jspm/nodelibs-vm@^0.2.0-alpha",
+      "zlib": "github:jspm/nodelibs-zlib@^0.2.0-alpha"
+    },
+    "overrides": {
+      "npm:browserify-zlib@0.1.4": {
+        "dependencies": {
+          "readable-stream": "^2.0.2",
+          "pako": "~0.2.0"
+        },
+        "map": {
+          "_stream_transform": "readable-stream/transform"
+        }
+      },
+      "npm:debug@2.2.0": {
+        "main": "browser.js",
+        "jspmNodeConversion": false,
+        "format": "cjs",
+        "map": {
+          "./browser.js": {
+            "node": "./node.js"
+          },
+          "fs": "@node/fs",
+          "net": "@node/net",
+          "tty": "@node/tty",
+          "util": "@node/util"
+        }
+      },
+      "npm:inherits@2.0.1": {
+        "ignore": [
+          "test.js"
+        ]
+      },
+      "npm:ms@0.7.1": {
+        "jspmNodeConversion": false,
+        "format": "cjs"
+      },
+      "npm:typescript@1.8.10": {
+        "browser": {},
+        "map": {
+          "buffer": "@empty",
+          "child_process": "@empty",
+          "fs": "@empty",
+          "path": "@empty",
+          "process": "@empty",
+          "readline": "@empty"
+        }
+      }
+    }
+  }
+}
