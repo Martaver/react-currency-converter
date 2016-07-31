@@ -1,20 +1,39 @@
 // app data models
+const STORAGE_PREFIX = 'cc_';
+const DEFAULT_DATE = (new Date()).toISOString();
+
 export class AppStore {
-  userData: UserData;
+  currencies = "{}";
+  fromCurrency = "SEK";
+  toCurrency = "EUR";
+  fromValue = "100.00";
+  selectedPeriod = "60";
+  selectedStartDate = DEFAULT_DATE;
+  selectedEndDate = DEFAULT_DATE;
 
-  constructor(initialState?: UserData) {
-    this.userData = initialState || null;
+  constructor(initialState?: any) {
+    this.load();
   }
-}
 
-export class UserData {
-  name: string;
-  age: number;
-  complete: boolean;
+  save(stateObject) {
+    // remember to stringify the objects that you want to store
+    Object.keys(stateObject).forEach(key => {
+      const storageKey = STORAGE_PREFIX + key;
+      const stateItem = stateObject[key];
+      if (stateItem) {
+        this[key] = stateItem;
+        sessionStorage.setItem(storageKey, stateItem);
+      }
+    });
+  }
 
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-    this.complete = false;
+  load() {
+    Object.keys(this).forEach(key => {
+      const storageKey = STORAGE_PREFIX + key;
+      const storageItem = sessionStorage.getItem(storageKey);
+      if (storageItem) {
+        this[key] = storageItem;
+      }
+    });
   }
 }

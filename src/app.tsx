@@ -11,11 +11,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // components imports
 import { Main } from './components/main';
-import { AppStore, UserData } from './stores/app-store';
+import { AppStore } from './stores/app-store';
 
-const message = 'React / TypeScript / JSPM - Starter-Kit';
-const appStore = new AppStore(new UserData('Piotr', 32));
-export var app: any = ReactDOM.render(<Main welcomeMessage={message} appStore={appStore} />, appContainer);
+const appStore = new AppStore();
+export var app: any = ReactDOM.render(<Main storage={appStore} />, appContainer);
 
 // here you can customize hot-module-reload hook
 // you could also copy to other modules

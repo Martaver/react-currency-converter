@@ -154,6 +154,7 @@ SystemJS.config({
     "npm:*.json"
   ],
   map: {
+    "accounting": "npm:accounting@0.4.1",
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
@@ -167,18 +168,23 @@ SystemJS.config({
     "http": "github:jspm/nodelibs-http@0.2.0-alpha",
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
+    "moment": "npm:moment@2.14.1",
+    "moment-range": "npm:moment-range@2.2.0",
+    "money": "npm:money@0.2.0",
     "net": "github:jspm/nodelibs-net@0.2.0-alpha",
     "os": "github:jspm/nodelibs-os@0.2.0-alpha",
     "path": "github:jspm/nodelibs-path@0.2.0-alpha",
     "process": "github:jspm/nodelibs-process@0.2.0-alpha",
     "react": "npm:react@15.2.1",
     "react-dom": "npm:react-dom@15.2.1",
+    "react-input-calendar": "npm:react-input-calendar@0.3.11",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
     "tty": "github:jspm/nodelibs-tty@0.2.0-alpha",
     "url": "github:jspm/nodelibs-url@0.2.0-alpha",
     "util": "github:jspm/nodelibs-util@0.2.0-alpha",
     "vm": "github:jspm/nodelibs-vm@0.2.0-alpha",
+    "whatwg-fetch": "npm:whatwg-fetch@1.0.0",
     "zlib": "github:jspm/nodelibs-zlib@0.2.0-alpha"
   },
   packages: {
@@ -189,7 +195,7 @@ SystemJS.config({
     },
     "github:jspm/nodelibs-http@0.2.0-alpha": {
       "map": {
-        "http-browserify": "npm:stream-http@2.3.0"
+        "http-browserify": "npm:stream-http@2.3.1"
       }
     },
     "github:jspm/nodelibs-os@0.2.0-alpha": {
@@ -230,15 +236,6 @@ SystemJS.config({
         "core-util-is": "npm:core-util-is@1.0.2"
       }
     },
-    "npm:stream-http@2.3.0": {
-      "map": {
-        "inherits": "npm:inherits@2.0.1",
-        "readable-stream": "npm:readable-stream@2.1.4",
-        "xtend": "npm:xtend@4.0.1",
-        "to-arraybuffer": "npm:to-arraybuffer@1.0.1",
-        "builtin-status-codes": "npm:builtin-status-codes@2.0.0"
-      }
-    },
     "npm:react@15.2.1": {
       "map": {
         "fbjs": "npm:fbjs@0.8.3",
@@ -254,7 +251,7 @@ SystemJS.config({
         "isomorphic-fetch": "npm:isomorphic-fetch@2.2.1",
         "immutable": "npm:immutable@3.8.1",
         "ua-parser-js": "npm:ua-parser-js@0.7.10",
-        "core-js": "npm:core-js@1.2.6"
+        "core-js": "npm:core-js@1.2.7"
       }
     },
     "npm:loose-envify@1.2.0": {
@@ -302,7 +299,7 @@ SystemJS.config({
     "npm:browserify-zlib@0.1.4": {
       "map": {
         "readable-stream": "npm:readable-stream@2.1.4",
-        "pako": "npm:pako@0.2.8"
+        "pako": "npm:pako@0.2.9"
       }
     },
     "github:jspm/nodelibs-crypto@0.2.0-alpha": {
@@ -328,7 +325,7 @@ SystemJS.config({
       "map": {
         "randombytes": "npm:randombytes@2.0.3",
         "miller-rabin": "npm:miller-rabin@4.0.0",
-        "bn.js": "npm:bn.js@4.11.4"
+        "bn.js": "npm:bn.js@4.11.5"
       }
     },
     "npm:create-hash@1.1.2": {
@@ -363,7 +360,7 @@ SystemJS.config({
         "create-hmac": "npm:create-hmac@1.1.4",
         "inherits": "npm:inherits@2.0.1",
         "parse-asn1": "npm:parse-asn1@5.0.0",
-        "bn.js": "npm:bn.js@4.11.4",
+        "bn.js": "npm:bn.js@4.11.5",
         "browserify-rsa": "npm:browserify-rsa@4.0.1",
         "elliptic": "npm:elliptic@6.3.1"
       }
@@ -389,19 +386,19 @@ SystemJS.config({
         "create-hash": "npm:create-hash@1.1.2",
         "randombytes": "npm:randombytes@2.0.3",
         "parse-asn1": "npm:parse-asn1@5.0.0",
-        "bn.js": "npm:bn.js@4.11.4",
+        "bn.js": "npm:bn.js@4.11.5",
         "browserify-rsa": "npm:browserify-rsa@4.0.1"
       }
     },
     "npm:miller-rabin@4.0.0": {
       "map": {
-        "bn.js": "npm:bn.js@4.11.4",
+        "bn.js": "npm:bn.js@4.11.5",
         "brorand": "npm:brorand@1.0.5"
       }
     },
     "npm:create-ecdh@4.0.0": {
       "map": {
-        "bn.js": "npm:bn.js@4.11.4",
+        "bn.js": "npm:bn.js@4.11.5",
         "elliptic": "npm:elliptic@6.3.1"
       }
     },
@@ -432,14 +429,14 @@ SystemJS.config({
     },
     "npm:browserify-rsa@4.0.1": {
       "map": {
-        "bn.js": "npm:bn.js@4.11.4",
+        "bn.js": "npm:bn.js@4.11.5",
         "randombytes": "npm:randombytes@2.0.3"
       }
     },
     "npm:elliptic@6.3.1": {
       "map": {
         "brorand": "npm:brorand@1.0.5",
-        "bn.js": "npm:bn.js@4.11.4",
+        "bn.js": "npm:bn.js@4.11.5",
         "inherits": "npm:inherits@2.0.1",
         "hash.js": "npm:hash.js@1.0.3"
       }
@@ -456,7 +453,7 @@ SystemJS.config({
     },
     "npm:asn1.js@4.8.0": {
       "map": {
-        "bn.js": "npm:bn.js@4.11.4",
+        "bn.js": "npm:bn.js@4.11.5",
         "inherits": "npm:inherits@2.0.1",
         "minimalistic-assert": "npm:minimalistic-assert@1.0.0"
       }
@@ -466,6 +463,27 @@ SystemJS.config({
         "isarray": "npm:isarray@1.0.0",
         "base64-js": "npm:base64-js@1.1.2",
         "ieee754": "npm:ieee754@1.1.6"
+      }
+    },
+    "npm:react-input-calendar@0.3.11": {
+      "map": {
+        "classnames": "npm:classnames@2.2.5",
+        "babel-runtime": "npm:babel-runtime@6.11.6"
+      }
+    },
+    "npm:babel-runtime@6.11.6": {
+      "map": {
+        "regenerator-runtime": "npm:regenerator-runtime@0.9.5",
+        "core-js": "npm:core-js@2.4.1"
+      }
+    },
+    "npm:stream-http@2.3.1": {
+      "map": {
+        "inherits": "npm:inherits@2.0.1",
+        "readable-stream": "npm:readable-stream@2.1.4",
+        "xtend": "npm:xtend@4.0.1",
+        "to-arraybuffer": "npm:to-arraybuffer@1.0.1",
+        "builtin-status-codes": "npm:builtin-status-codes@2.0.0"
       }
     }
   }
