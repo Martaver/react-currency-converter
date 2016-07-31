@@ -8,16 +8,20 @@ const FIXER_SERVICE_URL = 'https://api.fixer.io/';
 
 
 // http://api.fixer.io/latest
-const byLatest = () => FIXER_SERVICE_URL + 'latest';
+const byLatest = (base?: string) => FIXER_SERVICE_URL
+  + 'latest'
+  + (base ? '?base=' + base : '');
 
 // http://api.fixer.io/2000-01-03
-const byDate = (date: Date) => FIXER_SERVICE_URL + `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+const byDate = (date: Date, base?: string) => FIXER_SERVICE_URL
+  + date.toISOString().slice(0, 10)
+  + (base ? '?base=' + base : '');
 
-export async function getLatest(): Promise<IFixerServiceResponse> {
+export async function getLatest(base?): Promise<IFixerServiceResponse> {
   let json: Promise<IFixerServiceResponse>;
 
   try {
-    let response = await fetch(byLatest());
+    let response = await fetch(byLatest(base));
     response = checkStatus(response);
     json = response.json();
   } catch (err) {
@@ -27,11 +31,11 @@ export async function getLatest(): Promise<IFixerServiceResponse> {
   return json;
 }
 
-export async function getByDate(date: Date): Promise<IFixerServiceResponse> {
+export async function getByDate(date: Date, base?): Promise<IFixerServiceResponse> {
   let json: Promise<IFixerServiceResponse>;
 
   try {
-    let response = await fetch(byDate(date));
+    let response = await fetch(byDate(date, base));
     response = checkStatus(response);
     json = response.json();
   } catch (err) {
