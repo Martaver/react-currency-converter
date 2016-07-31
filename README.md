@@ -55,7 +55,7 @@ My test procedure:
 
 
 #### 1. Clone repo
-    git clone https://github.com/piotrwitek/react-ts-jspm-starter-kit.git my-project-folder
+    git clone https://github.com/piotrwitek/react-currency-converter.git my-project-folder
 
 #### 2. Install npm dependencies
     npm install
@@ -116,7 +116,7 @@ My test procedure:
 `npm run test` - run test suites
 
 `npm run precommit` - pre commit git hook - runs linter
-    
+
 `npm run prepush` - pre push git hook - runs linter and tests
 
 ---
