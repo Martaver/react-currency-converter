@@ -4,7 +4,7 @@ import { checkStatus } from './utils';
 
 // Get the latest foreign exchange reference rates in JSON format.
 
-const FIXER_SERVICE_URL = 'http://api.fixer.io/';
+const FIXER_SERVICE_URL = 'https://api.fixer.io/';
 
 
 // http://api.fixer.io/latest
