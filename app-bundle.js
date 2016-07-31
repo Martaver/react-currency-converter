@@ -1268,7 +1268,7 @@ $__System.register('6', ['4', '5'], function (exports_1, context_1) {
         execute: function () {
             // import { CommentPanelModel, Comment } from '../stores/app-store';
             // Get the latest foreign exchange reference rates in JSON format.
-            FIXER_SERVICE_URL = 'http://api.fixer.io/';
+            FIXER_SERVICE_URL = 'https://api.fixer.io/';
             // http://api.fixer.io/latest
             byLatest = function () {
                 return FIXER_SERVICE_URL + 'latest';
