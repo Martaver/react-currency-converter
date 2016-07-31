@@ -49,9 +49,10 @@ export class Main extends React.Component<IProps, IState> {
 
   componentWillMount() {
     this.fetchPredefinedRates();
+    this.fetchCustomRates(this.state.selectedStartDate, this.state.selectedEndDate);
   }
 
-  async fetchPredefinedRates() {
+  async fetchPredefinedRates(newPeriod?) {
     // running loading indicator
     this.setState({
       predefinedChangeValue: LOADING_PLACEHOLDER,
@@ -59,57 +60,89 @@ export class Main extends React.Component<IProps, IState> {
     });
 
     // calculate date fo valuation change
-    const days = parseInt(this.state.selectedPeriod, 10);
-    const date = new Date();
-    date.setDate(date.getDate() - days);
+    const days = newPeriod ? newPeriod : parseInt(this.state.selectedPeriod, 10);
+    const startDate = new Date();
+    startDate.setDate(startDate.getDate() - days);
     // need to use base currency and use target for calculation
+    const changeCalculationResults = await this.calculateValueAndPercentGrowth(startDate, new Date());
+
+    // updating results
+    this.setState({
+      predefinedChangeValue: changeCalculationResults.change.toFixed(4),
+      predefinedChangePercent: changeCalculationResults.change.toFixed(3)
+    });
+  }
+
+  async fetchCustomRates(selectedStartDate, selectedEndDate) {
+    // running loading indicator
+    this.setState({
+      customChangeValue: LOADING_PLACEHOLDER,
+      customChangePercent: LOADING_PLACEHOLDER
+    });
+
+    // calculate date fo valuation change
+    const startDate = selectedStartDate ? new Date(selectedStartDate) : new Date();
+    const endDate = selectedEndDate ? new Date(selectedEndDate) : new Date();
+    // need to use base currency and use target for calculation
+    const changeCalculationResults = await this.calculateValueAndPercentGrowth(startDate, endDate);
+
+    // updating results
+    this.setState({
+      customChangeValue: changeCalculationResults.change.toFixed(4),
+      customChangePercent: changeCalculationResults.change.toFixed(3)
+    });
+  }
+
+  async calculateValueAndPercentGrowth(startDate: Date, endDate: Date) {
     const baseCurrency = this.state.fromCurrency;
     const targetCurrency = this.state.toCurrency;
 
     let results = await Promise.all([
-      await Services.getLatest(baseCurrency),
-      await Services.getByDate(date, baseCurrency)
+      await Services.getByDate(startDate, baseCurrency),
+      await Services.getByDate(endDate, baseCurrency)
     ]);
-    const latestRate = results[0].rates[targetCurrency];
-    const oldestRate = results[1].rates[targetCurrency];
+    const oldestRate = results[0].rates[targetCurrency];
+    const latestRate = results[1].rates[targetCurrency];
     // simple caluclation of growth
     const change = latestRate - oldestRate;
     // claculation of percent growth
     const changePercent = (change * 100) / latestRate;
 
     console.log(oldestRate, latestRate, change, changePercent);
-
-    // updating results
-    this.setState({
-      predefinedChangeValue: change.toFixed(4),
-      predefinedChangePercent: changePercent.toFixed(3)
-    });
+    return {
+      change: change,
+      changePercent: changePercent
+    };
   }
 
 
   handlePredefinedPeriodChange = (event) => {
     const newSelectedPeriod = event.target.value;
-    this.fetchPredefinedRates();
+    this.fetchPredefinedRates(newSelectedPeriod);
     this.setState({ selectedPeriod: newSelectedPeriod });
   }
 
   handleCalendarStartDateChange = (newStartDate: string) => {
-    console.log(newStartDate);
+    const dateObject = new Date(newStartDate);
+    this.fetchCustomRates(dateObject, this.state.selectedEndDate);
     this.setState({ selectedStartDate: newStartDate });
   }
 
   handleCalendarEndDateChange = (newEndDate: string) => {
-    console.log(newEndDate);
+    const dateObject = new Date(newEndDate);
+    this.fetchCustomRates(this.state.selectedStartDate, dateObject);
     this.setState({ selectedEndDate: newEndDate });
   }
 
   handleFromCurrencyChange = (newCurrency: string) => {
     this.fetchPredefinedRates();
+    this.fetchCustomRates(this.state.selectedStartDate, this.state.selectedEndDate);
     this.setState({ fromCurrency: newCurrency });
   }
 
   handleToCurrencyChange = (newCurrency: string) => {
     this.fetchPredefinedRates();
+    this.fetchCustomRates(this.state.selectedStartDate, this.state.selectedEndDate);
     this.setState({ toCurrency: newCurrency });
   }
 
