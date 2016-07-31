@@ -1201,7 +1201,7 @@ $__System.register('6', ['4', '5'], function (exports_1, context_1) {
     };
     var utils_1;
     var FIXER_SERVICE_URL, byLatest, byDate;
-    function getLatest() {
+    function getLatest(base) {
         return __awaiter(this, void 0, Promise, regeneratorRuntime.mark(function callee$3$0() {
           var json, response;
 
@@ -1210,7 +1210,7 @@ $__System.register('6', ['4', '5'], function (exports_1, context_1) {
             case 0:
               context$4$0.prev = 0;
               context$4$0.next = 3;
-              return fetch(byLatest());
+              return fetch(byLatest(base));
             case 3:
               response = context$4$0.sent;
               response = utils_1.checkStatus(response);
@@ -1231,7 +1231,7 @@ $__System.register('6', ['4', '5'], function (exports_1, context_1) {
         }));
     }
     exports_1("getLatest", getLatest);
-    function getByDate(date) {
+    function getByDate(date, base) {
         return __awaiter(this, void 0, Promise, regeneratorRuntime.mark(function callee$3$0() {
           var json, response;
 
@@ -1240,7 +1240,7 @@ $__System.register('6', ['4', '5'], function (exports_1, context_1) {
             case 0:
               context$4$0.prev = 0;
               context$4$0.next = 3;
-              return fetch(byDate(date));
+              return fetch(byDate(date, base));
             case 3:
               response = context$4$0.sent;
               response = utils_1.checkStatus(response);
@@ -1270,12 +1270,12 @@ $__System.register('6', ['4', '5'], function (exports_1, context_1) {
             // Get the latest foreign exchange reference rates in JSON format.
             FIXER_SERVICE_URL = 'https://api.fixer.io/';
             // http://api.fixer.io/latest
-            byLatest = function () {
-                return FIXER_SERVICE_URL + 'latest';
+            byLatest = function (base) {
+                return FIXER_SERVICE_URL + 'latest' + (base ? '?base=' + base : '');
             };
             // http://api.fixer.io/2000-01-03
-            byDate = function (date) {
-                return FIXER_SERVICE_URL + (date.getFullYear() + "-" + date.getMonth() + "-" + date.getDay());
+            byDate = function (date, base) {
+                return FIXER_SERVICE_URL + date.toISOString().slice(0, 10) + (base ? '?base=' + base : '');
             };
         }
     };
@@ -7798,7 +7798,8 @@ $__System.register('72', ['b', 'f', '71'], function (exports_1, context_1) {
     var React, currency_valuation_header_select_1, currency_valuation_header_calendar_1;
     var DEFAULT_DATE;
     function CurrencyValuationChange(_a) {
-        var value = _a.value,
+        var changeValue = _a.changeValue,
+            changePercent = _a.changePercent,
             _b = _a.type,
             type = _b === void 0 ? "Select" : _b,
             fromCurrency = _a.fromCurrency,
@@ -7815,10 +7816,13 @@ $__System.register('72', ['b', 'f', '71'], function (exports_1, context_1) {
             selectedStartDate = _g === void 0 ? DEFAULT_DATE : _g,
             _h = _a.selectedEndDate,
             selectedEndDate = _h === void 0 ? DEFAULT_DATE : _h;
-        var positive = parseFloat(value) >= 0;
+        var positive = parseFloat(changeValue) >= 0;
         var signClass = positive ? "c-link--success" : "c-link--error";
-        var signedValue = positive ? '+' + value : value;
-        return React.createElement("div", { className: "c-card--high" }, React.createElement("div", { className: "c-card__item u-letter-box--medium" }, type === "Select" ? React.createElement(currency_valuation_header_select_1.CurrencyValuationHeaderSelect, { fromCurrency: fromCurrency, toCurrency: toCurrency, selectedPeriod: selectedPeriod, onChange: onChange }) : React.createElement(currency_valuation_header_calendar_1.CurrencyValuationHeaderCalendar, { fromCurrency: fromCurrency, toCurrency: toCurrency, selectedStartDate: selectedStartDate, selectedEndDate: selectedEndDate, onCalendarStartDateChange: onCalendarStartDateChange, onCalendaEndDateChange: onCalendaEndDateChange })), React.createElement("div", { className: "c-card__item u-pillar-box--super" }, "Change:", React.createElement("span", { className: "c-link c-link--right " + signClass }, signedValue)), React.createElement("div", { className: "c-card__item u-pillar-box--super" }, "Change%:", React.createElement("span", { className: "c-link c-link--right " + signClass }, signedValue, "%")));
+        var signedValue = positive ? '+' + changeValue : changeValue;
+        var positivePercent = parseFloat(changePercent) >= 0;
+        var signClassPercent = positivePercent ? "c-link--success" : "c-link--error";
+        var signedValuePercent = positivePercent ? '+' + changePercent : changePercent;
+        return React.createElement("div", { className: "c-card--high" }, React.createElement("div", { className: "c-card__item u-letter-box--medium" }, type === "Select" ? React.createElement(currency_valuation_header_select_1.CurrencyValuationHeaderSelect, { fromCurrency: fromCurrency, toCurrency: toCurrency, selectedPeriod: selectedPeriod, onChange: onChange }) : React.createElement(currency_valuation_header_calendar_1.CurrencyValuationHeaderCalendar, { fromCurrency: fromCurrency, toCurrency: toCurrency, selectedStartDate: selectedStartDate, selectedEndDate: selectedEndDate, onCalendarStartDateChange: onCalendarStartDateChange, onCalendaEndDateChange: onCalendaEndDateChange })), React.createElement("div", { className: "c-card__item u-pillar-box--super" }, "Change:", React.createElement("span", { className: "c-link c-link--right " + signClass }, signedValue)), React.createElement("div", { className: "c-card__item u-pillar-box--super" }, "Change%:", React.createElement("span", { className: "c-link c-link--right " + signClassPercent }, signedValuePercent, "%")));
     }
     exports_1("CurrencyValuationChange", CurrencyValuationChange);
     return {
@@ -7834,7 +7838,7 @@ $__System.register('72', ['b', 'f', '71'], function (exports_1, context_1) {
         }
     };
 });
-$__System.register('73', ['2', 'b', 'd', 'e', '72'], function (exports_1, context_1) {
+$__System.register('73', ['2', 'b', '7', 'd', 'e', '72'], function (exports_1, context_1) {
     "use strict";
 
     var __moduleName = context_1 && context_1.id;
@@ -7845,11 +7849,37 @@ $__System.register('73', ['2', 'b', 'd', 'e', '72'], function (exports_1, contex
         }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
-    var React, currency_converter_1, currency_converter_header_1, currency_valuation_change_1;
-    var Main;
+    var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) {
+                try {
+                    step(generator.next(value));
+                } catch (e) {
+                    reject(e);
+                }
+            }
+            function rejected(value) {
+                try {
+                    step(generator.throw(value));
+                } catch (e) {
+                    reject(e);
+                }
+            }
+            function step(result) {
+                result.done ? resolve(result.value) : new P(function (resolve) {
+                    resolve(result.value);
+                }).then(fulfilled, rejected);
+            }
+            step((generator = generator.apply(thisArg, _arguments)).next());
+        });
+    };
+    var React, Services, currency_converter_1, currency_converter_header_1, currency_valuation_change_1;
+    var LOADING_PLACEHOLDER, Main;
     return {
         setters: [function (_1) {}, function (React_1) {
             React = React_1;
+        }, function (Services_1) {
+            Services = Services_1;
         }, function (currency_converter_1_1) {
             currency_converter_1 = currency_converter_1_1;
         }, function (currency_converter_header_1_1) {
@@ -7858,6 +7888,7 @@ $__System.register('73', ['2', 'b', 'd', 'e', '72'], function (exports_1, contex
             currency_valuation_change_1 = currency_valuation_change_1_1;
         }],
         execute: function () {
+            LOADING_PLACEHOLDER = "loading...";
             // App pure component
             Main = function (_super) {
                 __extends(Main, _super);
@@ -7869,11 +7900,15 @@ $__System.register('73', ['2', 'b', 'd', 'e', '72'], function (exports_1, contex
                         selectedStartDate: this.props.storage.selectedStartDate,
                         selectedEndDate: this.props.storage.selectedEndDate,
                         fromCurrency: this.props.storage.fromCurrency,
-                        toCurrency: this.props.storage.toCurrency
+                        toCurrency: this.props.storage.toCurrency,
+                        predefinedChangeValue: LOADING_PLACEHOLDER,
+                        predefinedChangePercent: LOADING_PLACEHOLDER,
+                        customChangeValue: LOADING_PLACEHOLDER,
+                        customChangePercent: LOADING_PLACEHOLDER
                     };
-                    this.handleOnSelect = function (event) {
+                    this.handlePredefinedPeriodChange = function (event) {
                         var newSelectedPeriod = event.target.value;
-                        console.log(newSelectedPeriod);
+                        _this.fetchPredefinedRates();
                         _this.setState({ selectedPeriod: newSelectedPeriod });
                     };
                     this.handleCalendarStartDateChange = function (newStartDate) {
@@ -7885,11 +7920,11 @@ $__System.register('73', ['2', 'b', 'd', 'e', '72'], function (exports_1, contex
                         _this.setState({ selectedEndDate: newEndDate });
                     };
                     this.handleFromCurrencyChange = function (newCurrency) {
-                        console.log(newCurrency);
+                        _this.fetchPredefinedRates();
                         _this.setState({ fromCurrency: newCurrency });
                     };
                     this.handleToCurrencyChange = function (newCurrency) {
-                        console.log(newCurrency);
+                        _this.fetchPredefinedRates();
                         _this.setState({ toCurrency: newCurrency });
                     };
                 }
@@ -7898,11 +7933,58 @@ $__System.register('73', ['2', 'b', 'd', 'e', '72'], function (exports_1, contex
                     this.props.storage.save(this.state);
                 };
                 Main.prototype.componentWillMount = function () {
-                    // console.log('main mounted!');
+                    this.fetchPredefinedRates();
+                };
+                Main.prototype.fetchPredefinedRates = function () {
+                    return __awaiter(this, void 0, void 0, regeneratorRuntime.mark(function callee$5$0() {
+                      var days, date, baseCurrency, targetCurrency, results, latestRate, oldestRate, change, changePercent;
+
+                      return regeneratorRuntime.wrap(function callee$5$0$(context$6$0) {
+                        while (1) switch (context$6$0.prev = context$6$0.next) {
+                        case 0:
+                          // running loading indicator
+                          this.setState({
+                              predefinedChangeValue: LOADING_PLACEHOLDER,
+                              predefinedChangePercent: LOADING_PLACEHOLDER
+                          });
+                          days = parseInt(this.state.selectedPeriod, 10);
+                          date = new Date();
+                          date.setDate(date.getDate() - days);
+                          baseCurrency = this.state.fromCurrency;
+                          targetCurrency = this.state.toCurrency;
+                          context$6$0.t0 = Promise;
+                          context$6$0.next = 9;
+                          return Services.getLatest(baseCurrency);
+                        case 9:
+                          context$6$0.t1 = context$6$0.sent;
+                          context$6$0.next = 12;
+                          return Services.getByDate(date, baseCurrency);
+                        case 12:
+                          context$6$0.t2 = context$6$0.sent;
+                          context$6$0.t3 = [context$6$0.t1, context$6$0.t2];
+                          context$6$0.next = 16;
+                          return context$6$0.t0.all.call(context$6$0.t0, context$6$0.t3);
+                        case 16:
+                          results = context$6$0.sent;
+                          latestRate = results[0].rates[targetCurrency];
+                          oldestRate = results[1].rates[targetCurrency];
+                          change = latestRate - oldestRate;
+                          changePercent = change * 100 / latestRate;
+                          console.log(oldestRate, latestRate, change, changePercent);
+                          // updating results
+                          this.setState({
+                              predefinedChangeValue: change.toFixed(4),
+                              predefinedChangePercent: changePercent.toFixed(3)
+                          });
+                        case 23:
+                        case "end":
+                          return context$6$0.stop();
+                        }
+                      }, callee$5$0, this);
+                    }));
                 };
                 Main.prototype.render = function () {
-                    var value = 0.004;
-                    return React.createElement("div", { className: "o-container o-container--medium c-text" }, React.createElement(currency_converter_header_1.CurrencyConverterHeader, null), React.createElement(currency_converter_1.CurrencyConverter, { storage: this.props.storage, fromCurrency: this.state.fromCurrency, toCurrency: this.state.toCurrency, onFromCurrencyChange: this.handleFromCurrencyChange, onToCurrencyChange: this.handleToCurrencyChange }), React.createElement("div", { className: "o-grid o-grid--small-full o-grid--medium-full" }, React.createElement("div", { className: "o-grid__cell u-letter-box--small" }, React.createElement(currency_valuation_change_1.CurrencyValuationChange, { value: value, onChange: this.handleOnSelect, selectedPeriod: this.state.selectedPeriod, fromCurrency: this.state.fromCurrency, toCurrency: this.state.toCurrency })), React.createElement("div", { className: "o-grid__cell u-letter-box--small" }, React.createElement(currency_valuation_change_1.CurrencyValuationChange, { value: -value, type: "Calendar", onCalendarStartDateChange: this.handleCalendarStartDateChange, onCalendaEndDateChange: this.handleCalendarEndDateChange, fromCurrency: this.state.fromCurrency, toCurrency: this.state.toCurrency, selectedStartDate: this.state.selectedStartDate, selectedEndDate: this.state.selectedEndDate }))));
+                    return React.createElement("div", { className: "o-container o-container--medium c-text" }, React.createElement(currency_converter_header_1.CurrencyConverterHeader, null), React.createElement(currency_converter_1.CurrencyConverter, { storage: this.props.storage, fromCurrency: this.state.fromCurrency, toCurrency: this.state.toCurrency, onFromCurrencyChange: this.handleFromCurrencyChange, onToCurrencyChange: this.handleToCurrencyChange }), React.createElement("div", { className: "o-grid o-grid--small-full o-grid--medium-full" }, React.createElement("div", { className: "o-grid__cell u-letter-box--small" }, React.createElement(currency_valuation_change_1.CurrencyValuationChange, { changeValue: this.state.predefinedChangeValue, changePercent: this.state.predefinedChangePercent, onChange: this.handlePredefinedPeriodChange, selectedPeriod: this.state.selectedPeriod, fromCurrency: this.state.fromCurrency, toCurrency: this.state.toCurrency })), React.createElement("div", { className: "o-grid__cell u-letter-box--small" }, React.createElement(currency_valuation_change_1.CurrencyValuationChange, { changeValue: this.state.customChangeValue, changePercent: this.state.customChangePercent, type: "Calendar", onCalendarStartDateChange: this.handleCalendarStartDateChange, onCalendaEndDateChange: this.handleCalendarEndDateChange, fromCurrency: this.state.fromCurrency, toCurrency: this.state.toCurrency, selectedStartDate: this.state.selectedStartDate, selectedEndDate: this.state.selectedEndDate }))));
                 };
                 return Main;
             }(React.Component);
