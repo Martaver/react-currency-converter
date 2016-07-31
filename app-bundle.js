@@ -7908,23 +7908,27 @@ $__System.register('73', ['2', 'b', '7', 'd', 'e', '72'], function (exports_1, c
                     };
                     this.handlePredefinedPeriodChange = function (event) {
                         var newSelectedPeriod = event.target.value;
-                        _this.fetchPredefinedRates();
+                        _this.fetchPredefinedRates(newSelectedPeriod);
                         _this.setState({ selectedPeriod: newSelectedPeriod });
                     };
                     this.handleCalendarStartDateChange = function (newStartDate) {
-                        console.log(newStartDate);
+                        var dateObject = new Date(newStartDate);
+                        _this.fetchCustomRates(dateObject, _this.state.selectedEndDate);
                         _this.setState({ selectedStartDate: newStartDate });
                     };
                     this.handleCalendarEndDateChange = function (newEndDate) {
-                        console.log(newEndDate);
+                        var dateObject = new Date(newEndDate);
+                        _this.fetchCustomRates(_this.state.selectedStartDate, dateObject);
                         _this.setState({ selectedEndDate: newEndDate });
                     };
                     this.handleFromCurrencyChange = function (newCurrency) {
                         _this.fetchPredefinedRates();
+                        _this.fetchCustomRates(_this.state.selectedStartDate, _this.state.selectedEndDate);
                         _this.setState({ fromCurrency: newCurrency });
                     };
                     this.handleToCurrencyChange = function (newCurrency) {
                         _this.fetchPredefinedRates();
+                        _this.fetchCustomRates(_this.state.selectedStartDate, _this.state.selectedEndDate);
                         _this.setState({ toCurrency: newCurrency });
                     };
                 }
@@ -7934,10 +7938,11 @@ $__System.register('73', ['2', 'b', '7', 'd', 'e', '72'], function (exports_1, c
                 };
                 Main.prototype.componentWillMount = function () {
                     this.fetchPredefinedRates();
+                    this.fetchCustomRates(this.state.selectedStartDate, this.state.selectedEndDate);
                 };
-                Main.prototype.fetchPredefinedRates = function () {
+                Main.prototype.fetchPredefinedRates = function (newPeriod) {
                     return __awaiter(this, void 0, void 0, regeneratorRuntime.mark(function callee$5$0() {
-                      var days, date, baseCurrency, targetCurrency, results, latestRate, oldestRate, change, changePercent;
+                      var days, startDate, changeCalculationResults;
 
                       return regeneratorRuntime.wrap(function callee$5$0$(context$6$0) {
                         while (1) switch (context$6$0.prev = context$6$0.next) {
@@ -7947,36 +7952,89 @@ $__System.register('73', ['2', 'b', '7', 'd', 'e', '72'], function (exports_1, c
                               predefinedChangeValue: LOADING_PLACEHOLDER,
                               predefinedChangePercent: LOADING_PLACEHOLDER
                           });
-                          days = parseInt(this.state.selectedPeriod, 10);
-                          date = new Date();
-                          date.setDate(date.getDate() - days);
+                          days = newPeriod ? newPeriod : parseInt(this.state.selectedPeriod, 10);
+                          startDate = new Date();
+                          startDate.setDate(startDate.getDate() - days);
+                          context$6$0.next = 6;
+                          return this.calculateValueAndPercentGrowth(startDate, new Date());
+                        case 6:
+                          changeCalculationResults = context$6$0.sent;
+                          // updating results
+                          this.setState({
+                              predefinedChangeValue: changeCalculationResults.change.toFixed(4),
+                              predefinedChangePercent: changeCalculationResults.change.toFixed(3)
+                          });
+                        case 8:
+                        case "end":
+                          return context$6$0.stop();
+                        }
+                      }, callee$5$0, this);
+                    }));
+                };
+                Main.prototype.fetchCustomRates = function (selectedStartDate, selectedEndDate) {
+                    return __awaiter(this, void 0, void 0, regeneratorRuntime.mark(function callee$5$0() {
+                      var startDate, endDate, changeCalculationResults;
+
+                      return regeneratorRuntime.wrap(function callee$5$0$(context$6$0) {
+                        while (1) switch (context$6$0.prev = context$6$0.next) {
+                        case 0:
+                          // running loading indicator
+                          this.setState({
+                              customChangeValue: LOADING_PLACEHOLDER,
+                              customChangePercent: LOADING_PLACEHOLDER
+                          });
+                          startDate = selectedStartDate ? new Date(selectedStartDate) : new Date();
+                          endDate = selectedEndDate ? new Date(selectedEndDate) : new Date();
+                          context$6$0.next = 5;
+                          return this.calculateValueAndPercentGrowth(startDate, endDate);
+                        case 5:
+                          changeCalculationResults = context$6$0.sent;
+                          // updating results
+                          this.setState({
+                              customChangeValue: changeCalculationResults.change.toFixed(4),
+                              customChangePercent: changeCalculationResults.change.toFixed(3)
+                          });
+                        case 7:
+                        case "end":
+                          return context$6$0.stop();
+                        }
+                      }, callee$5$0, this);
+                    }));
+                };
+                Main.prototype.calculateValueAndPercentGrowth = function (startDate, endDate) {
+                    return __awaiter(this, void 0, void 0, regeneratorRuntime.mark(function callee$5$0() {
+                      var baseCurrency, targetCurrency, results, oldestRate, latestRate, change, changePercent;
+
+                      return regeneratorRuntime.wrap(function callee$5$0$(context$6$0) {
+                        while (1) switch (context$6$0.prev = context$6$0.next) {
+                        case 0:
                           baseCurrency = this.state.fromCurrency;
                           targetCurrency = this.state.toCurrency;
                           context$6$0.t0 = Promise;
-                          context$6$0.next = 9;
-                          return Services.getLatest(baseCurrency);
-                        case 9:
+                          context$6$0.next = 5;
+                          return Services.getByDate(startDate, baseCurrency);
+                        case 5:
                           context$6$0.t1 = context$6$0.sent;
-                          context$6$0.next = 12;
-                          return Services.getByDate(date, baseCurrency);
-                        case 12:
+                          context$6$0.next = 8;
+                          return Services.getByDate(endDate, baseCurrency);
+                        case 8:
                           context$6$0.t2 = context$6$0.sent;
                           context$6$0.t3 = [context$6$0.t1, context$6$0.t2];
-                          context$6$0.next = 16;
+                          context$6$0.next = 12;
                           return context$6$0.t0.all.call(context$6$0.t0, context$6$0.t3);
-                        case 16:
+                        case 12:
                           results = context$6$0.sent;
-                          latestRate = results[0].rates[targetCurrency];
-                          oldestRate = results[1].rates[targetCurrency];
+                          oldestRate = results[0].rates[targetCurrency];
+                          latestRate = results[1].rates[targetCurrency];
                           change = latestRate - oldestRate;
                           changePercent = change * 100 / latestRate;
                           console.log(oldestRate, latestRate, change, changePercent);
-                          // updating results
-                          this.setState({
-                              predefinedChangeValue: change.toFixed(4),
-                              predefinedChangePercent: changePercent.toFixed(3)
+
+                          return context$6$0.abrupt("return", {
+                              change: change,
+                              changePercent: changePercent
                           });
-                        case 23:
+                        case 19:
                         case "end":
                           return context$6$0.stop();
                         }
