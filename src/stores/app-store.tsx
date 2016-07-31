@@ -11,7 +11,7 @@ export class AppStore {
   selectedStartDate = DEFAULT_DATE;
   selectedEndDate = DEFAULT_DATE;
 
-  constructor(initialState?: any) {
+  constructor() {
     this.load();
   }
 
