@@ -3,8 +3,8 @@ import * as React from 'react';
 import Money from 'money';
 
 // import { UserData } from '../stores/app-store';
-import * as Services from '../services/index';
-import * as Helpers from '../app-helpers';
+import * as AppUtils from '../app-utils';
+import * as FixerService from '../services/fixer/index';
 import { CurrencySelect } from './currency-select';
 import { CurrencyInput } from './currency-input';
 
@@ -35,7 +35,6 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('save converter state');
     this.props.storage.save({
       currencies: JSON.stringify(this.state.currencies),
       fromValue: this.state.fromValue
@@ -47,7 +46,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
   }
 
   async fetchLatestRates() {
-    const data = await Services.getLatest();
+    const data = await FixerService.getLatest();
     Money.base = data.base;
     Money.rates = data.rates;
 
@@ -97,12 +96,12 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
     let newFromValue = node.target.value;
     // check lenght on formatted value to include delimiters, also checking if lenght has reduced
     // to cover overflow edge case, validate valid currency format
-    if (Helpers.isNotValidCurrency(newFromValue)
-      || (Helpers.formatMoney(newFromValue).length > NUMBERS_LIMIT && newFromValue.length >= this.state.fromValue.length)
+    if (AppUtils.isNotValidCurrency(newFromValue)
+      || (AppUtils.formatMoney(newFromValue).length > NUMBERS_LIMIT && newFromValue.length >= this.state.fromValue.length)
     ) return;
     // format input value only when focus is lost because caret position will jump
-    if (!Helpers.isInputFocused(node.target)) {
-      newFromValue = Helpers.formatMoney(newFromValue);
+    if (!AppUtils.isInputFocused(node.target)) {
+      newFromValue = AppUtils.formatMoney(newFromValue);
     }
 
     const newToValue = this.calculateRateOrEmptyString(
@@ -112,7 +111,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
       true
     );
     // check lenght of calculated value so do not extend a limit
-    if (Helpers.formatMoney(newToValue).length > NUMBERS_LIMIT) return;
+    if (AppUtils.formatMoney(newToValue).length > NUMBERS_LIMIT) return;
 
     this.setState({
       fromValue: newFromValue,
@@ -124,12 +123,12 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
     let newToValue = node.target.value;
     // check lenght on formatted value to include delimiters, also checking if lenght has reduced
     // to cover overflow edge case, validate valid currency formatt
-    if (Helpers.isNotValidCurrency(newToValue)
-      || (Helpers.formatMoney(newToValue).length > NUMBERS_LIMIT && newToValue.length >= this.state.fromValue.length)
+    if (AppUtils.isNotValidCurrency(newToValue)
+      || (AppUtils.formatMoney(newToValue).length > NUMBERS_LIMIT && newToValue.length >= this.state.fromValue.length)
     ) return;
     // format input value only when focus is lost because caret position will jump
-    if (!Helpers.isInputFocused(node.target)) {
-      newToValue = Helpers.formatMoney(newToValue);
+    if (!AppUtils.isInputFocused(node.target)) {
+      newToValue = AppUtils.formatMoney(newToValue);
     }
 
     const newFromValue = this.calculateRateOrEmptyString(
@@ -139,7 +138,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
       true
     );
     // check lenght of calculated value so do not extend a limit
-    if (Helpers.formatMoney(newFromValue).length > NUMBERS_LIMIT) return;
+    if (AppUtils.formatMoney(newFromValue).length > NUMBERS_LIMIT) return;
 
     this.setState({
       fromValue: newFromValue,
@@ -154,7 +153,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
         .from(fromCurrency)
         .to(toCurrency);
 
-      return format ? Helpers.formatMoney(value) : value;
+      return format ? AppUtils.formatMoney(value) : value;
     } else {
       return "";
     }

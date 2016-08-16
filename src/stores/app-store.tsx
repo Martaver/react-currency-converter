@@ -1,15 +1,16 @@
 // app data models
 const STORAGE_PREFIX = 'cc_';
-const DEFAULT_DATE = (new Date()).toISOString();
+const INITIAL_DATE = (new Date()).toISOString();
 
 export class AppStore {
+  // initial state
   currencies = "{}";
   fromCurrency = "SEK";
   toCurrency = "EUR";
   fromValue = "100.00";
   selectedPeriod = "60";
-  selectedStartDate = DEFAULT_DATE;
-  selectedEndDate = DEFAULT_DATE;
+  selectedStartDate = INITIAL_DATE;
+  selectedEndDate = INITIAL_DATE;
 
   constructor() {
     this.load();

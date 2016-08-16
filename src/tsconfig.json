@@ -26,8 +26,9 @@
     "!node_modules/**"
   ],
   "files": [
-    "app-typings.d.ts",
-    "app-helpers.tsx",
+    "typings/modules.d.ts",
+    "typings/services.d.ts",
+    "app-utils.tsx",
     "app.tsx",
     "components/currency-converter-header.tsx",
     "components/currency-converter.tsx",
@@ -36,13 +37,12 @@
     "components/currency-valuation-change.tsx",
     "components/currency-valuation-header-calendar.tsx",
     "components/currency-valuation-header-select.tsx",
-    "components/main.tsx",
-    "services/fixer-adapter.tsx",
-    "services/index.tsx",
-    "services/utils.tsx",
+    "services/fixer/index.tsx",
+    "services/services-utils.tsx",
     "stores/app-store.spec.tsx",
     "stores/app-store.tsx",
-    "test-runner.tsx"
+    "test-runner.tsx",
+    "views/main.tsx"
   ],
   "atom": {
     "rewriteTsconfig": true,

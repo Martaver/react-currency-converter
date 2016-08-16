@@ -3,11 +3,12 @@ import './main.css!';
 // lib imports
 import * as React from 'react';
 // components imports
-import * as Services from '../services/index';
+import * as AppUtils from '../app-utils';
+import * as FixerService from '../services/fixer/index';
 import { AppStore } from '../stores/app-store';
-import { CurrencyConverter } from './currency-converter';
-import { CurrencyConverterHeader } from './currency-converter-header';
-import { CurrencyValuationChange } from './currency-valuation-change';
+import { CurrencyConverter } from '../components/currency-converter';
+import { CurrencyConverterHeader } from '../components/currency-converter-header';
+import { CurrencyValuationChange } from '../components/currency-valuation-change';
 
 const LOADING_PLACEHOLDER = "loading...";
 
@@ -43,7 +44,6 @@ export class Main extends React.Component<IProps, IState> {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('save main state');
     this.props.storage.save(this.state);
   }
 
@@ -53,7 +53,8 @@ export class Main extends React.Component<IProps, IState> {
   }
 
   async fetchPredefinedRates(newPeriod?) {
-    // running loading indicator
+    // showing loading indicator
+    // TODO: add opacity transition to avoid flickering
     this.setState({
       predefinedChangeValue: LOADING_PLACEHOLDER,
       predefinedChangePercent: LOADING_PLACEHOLDER
@@ -74,7 +75,7 @@ export class Main extends React.Component<IProps, IState> {
   }
 
   async fetchCustomRates(selectedStartDate, selectedEndDate) {
-    // running loading indicator
+    // showing loading indicator
     this.setState({
       customChangeValue: LOADING_PLACEHOLDER,
       customChangePercent: LOADING_PLACEHOLDER
@@ -98,8 +99,8 @@ export class Main extends React.Component<IProps, IState> {
     const targetCurrency = this.state.toCurrency;
 
     let results = await Promise.all([
-      await Services.getByDate(startDate, baseCurrency),
-      await Services.getByDate(endDate, baseCurrency)
+      await FixerService.getByDate(startDate, baseCurrency),
+      await FixerService.getByDate(endDate, baseCurrency)
     ]);
     const oldestRate = results[0].rates[targetCurrency];
     const latestRate = results[1].rates[targetCurrency];
@@ -108,7 +109,7 @@ export class Main extends React.Component<IProps, IState> {
     // claculation of percent growth
     const changePercent = (change * 100) / latestRate;
 
-    console.log(oldestRate, latestRate, change, changePercent);
+    AppUtils.logToConsole(oldestRate, latestRate, change, changePercent);
     return {
       change: change,
       changePercent: changePercent
