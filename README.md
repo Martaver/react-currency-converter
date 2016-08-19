@@ -1,6 +1,9 @@
-# Based on React / TypeScript / JSPM / Hot-Reload - starter-kit - https://github.com/piotrwitek/react-ts-jspm-starter-kit
+# React Currency Converter
 
-DEMO: https://piotrwitek.github.io/react-currency-converter/
+### Demo: https://piotrwitek.github.io/react-currency-converter/
+
+> Based on "React / TypeScript / JSPM / Hot-Reload starter-kit" (https://github.com/piotrwitek/react-ts-jspm-starter-kit)
+
 
 ---
 
