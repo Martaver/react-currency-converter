@@ -1,49 +1,6 @@
-# React / TypeScript / JSPM / Hot-Reload - starter-kit
-> Modern & Minimalistic boilerplate for building modular apps with React - utilizing power of TypeScript, ES2016, Hot-Reload, async/await, ES Modules & in-browser transpiling powered by JSPM/SystemJS.
+# Based on React / TypeScript / JSPM / Hot-Reload - starter-kit - https://github.com/piotrwitek/react-ts-jspm-starter-kit
 
-> Keeping up-to-date with new releases of React / TypeScript / JSPM, and to follow changes in the best practices as they might change with a new updates.
-
-> TypeScript 2.0 on horizon - until the official release I will use beta branch for planned update.
-
-## Features
-- CLEAN - keep at minimal dependencies
-- FAST-DEV-FEEDBACK-LOOP - dev server with hot-module-reload, bundle-free on-the-fly ES2016/TypeScript transpilation - using [jspm-hmr](https://www.npmjs.com/package/jspm-hmr)
-- BEST-TYPESCRIPT-DEV-WORKFLOW - in browser module loading / no pre-compilation / no bundling / blazing fast hot-module-reload
-- REACT-BEST-PRACTICES - no mixins, no ref string - ref callback, no bind - ES Class Fields, no new functions in render methods, render lists in dedicated components, don't use array index as key, ES6 style PureRenderMixin
-- NO-SETUP - npm install && npm start to start coding
-- COMPLETE-WORKFLOW - helpful npm scripts and tasks, github hooks, linter, test-harness etc.
-- TDD-READY - test-harness setup with Tape (blue-tape) - included example code and @types
-- EXTRAS - css loading indicator while loading React and other dependencies
-
-##### Learn TypeScript from sample code
-- Typescript definitions for third-party libraries
-- solid tsconfig setup for ES2016 support
-- get typings by `using npm i -D @types`
-- async/await
-
-##### Learn React from sample code
-- React with TypeScript using ES6 classes
-- Redux with TypeScript (TODO)
-- Unit-testing the behaviour and rendering results of Components (TODO)
-
-##### JSPM
-- JSPM 0.17.X - most recent version, staying up-to-date with best-practices
-- static dev-bundle setup for fast full-page reload (this will make JSPM/SystemJS workflow super fast in development, certainly as fast as webpack)
-- automatic bundle creation for production in `~/dist/` folder - accessible on dev server `http://localhost/dist/`
-- importing and bundling CSS files using `plugin-css`
-
-NB: - temporarily using regenerator (NO-BABEL) to transpile generators/async/await to ES5 for production bundle (soon with TypeScript 2.1 will be removed completely - only TS)
-
----
-
-## Making JSPM loading fast - Static Bundle for External Deps
-Important point to keep in mind when running dev server with JSPM is to create a static bundle of external dependencies. As they only change when updated through NPM, it is best to bundle them all together and load as one package instead of separately making hundreds of requests slowing down page reload.
-That way your only your modules from src are still loaded separately making possible to hot-reload them instantly without rebundling, and do full-page reload if necessary very quickly. This is the best of two development approaches (hot-reload vs. bundling) mixed together.
-
-My test procedure:
-
-1. run `npm run unbundle` -> open network tab in chrome dev tools -> reload the page -> check logged results
-2. run `npm run bundle-dev` -> open network tab in chrome dev tools -> reload page -> compare logged results with previous
+DEMO: https://piotrwitek.github.io/react-currency-converter/
 
 ---
 
