@@ -3,7 +3,7 @@ import * as React from 'react';
 import Money from 'money';
 
 import { formatMoney, isInputFocused, isNotValidCurrency } from '../utils/index';
-import * as FixerService from '../services/fixer/index';
+import * as CurrencyRatesService from '../services/fixer/currency-rates';
 import { CurrencySelect } from './currency-select';
 import { CurrencyInput } from './currency-input';
 
@@ -45,7 +45,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
   }
 
   async fetchLatestRates() {
-    const data = await FixerService.getLatest();
+    const data = await CurrencyRatesService.getLatest();
     Money.base = data.base;
     Money.rates = data.rates;
 

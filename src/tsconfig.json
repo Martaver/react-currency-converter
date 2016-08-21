@@ -36,7 +36,7 @@
     "components/currency-valuation-change.tsx",
     "components/currency-valuation-header-calendar.tsx",
     "components/currency-valuation-header-select.tsx",
-    "services/fixer/index.tsx",
+    "services/fixer/currency-rates.tsx",
     "stores/app-store.spec.tsx",
     "stores/app-store.tsx",
     "test-runner.tsx",

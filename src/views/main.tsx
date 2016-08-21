@@ -4,7 +4,7 @@ import './main.css!';
 import * as React from 'react';
 // components imports
 import { logToConsole } from '../utils/index';
-import * as FixerService from '../services/fixer/index';
+import * as CurrencyRatesService from '../services/fixer/currency-rates';
 import { AppStore } from '../stores/app-store';
 import { CurrencyConverter } from '../components/currency-converter';
 import { CurrencyConverterHeader } from '../components/currency-converter-header';
@@ -99,8 +99,8 @@ export class Main extends React.Component<IProps, IState> {
     const targetCurrency = this.state.toCurrency;
 
     let results = await Promise.all([
-      await FixerService.getByDate(startDate, baseCurrency),
-      await FixerService.getByDate(endDate, baseCurrency)
+      await CurrencyRatesService.getByDate(startDate, baseCurrency),
+      await CurrencyRatesService.getByDate(endDate, baseCurrency)
     ]);
     const oldestRate = results[0].rates[targetCurrency];
     const latestRate = results[1].rates[targetCurrency];
