@@ -3,7 +3,7 @@ import './main.css!';
 // lib imports
 import * as React from 'react';
 // components imports
-import { logToConsole } from '../utils/index';
+// import { logToConsole } from '../utils/index';
 import * as CurrencyRatesService from '../services/fixer/currency-rates';
 import { AppStore } from '../stores/app-store';
 import { CurrencyConverter } from '../components/currency-converter';
@@ -64,13 +64,23 @@ export class Main extends React.Component<IProps, IState> {
     const days = newPeriod ? newPeriod : parseInt(this.state.selectedPeriod, 10);
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - days);
-    // need to use base currency and use target for calculation
-    const changeCalculationResults = await this.calculateValueAndPercentGrowth(startDate, new Date());
+    // need to use base currency and target for calculation
+    const baseCurrency = this.state.fromCurrency;
+    const [olderRates, latestRates] = await Promise.all([
+      await CurrencyRatesService.getByDate(startDate, baseCurrency),
+      await CurrencyRatesService.getByDate(new Date(), baseCurrency)
+    ]);
+
+    const targetCurrency = this.state.toCurrency;
+    const oldestRateValue = olderRates.rates[targetCurrency];
+    const latestRateValue = latestRates.rates[targetCurrency];
+
+    const changeCalculationResults = await this.calculateValueAndPercentChange(oldestRateValue, latestRateValue);
 
     // updating results
     this.setState({
-      predefinedChangeValue: changeCalculationResults.change.toFixed(4),
-      predefinedChangePercent: changeCalculationResults.change.toFixed(3)
+      predefinedChangeValue: changeCalculationResults.changeValue.toFixed(4),
+      predefinedChangePercent: changeCalculationResults.changePercent.toFixed(3)
     });
   }
 
@@ -84,34 +94,35 @@ export class Main extends React.Component<IProps, IState> {
     // calculate date fo valuation change
     const startDate = selectedStartDate ? new Date(selectedStartDate) : new Date();
     const endDate = selectedEndDate ? new Date(selectedEndDate) : new Date();
-    // need to use base currency and use target for calculation
-    const changeCalculationResults = await this.calculateValueAndPercentGrowth(startDate, endDate);
-
-    // updating results
-    this.setState({
-      customChangeValue: changeCalculationResults.change.toFixed(4),
-      customChangePercent: changeCalculationResults.change.toFixed(3)
-    });
-  }
-
-  async calculateValueAndPercentGrowth(startDate: Date, endDate: Date) {
+    // need to use base currency and target for calculation
     const baseCurrency = this.state.fromCurrency;
-    const targetCurrency = this.state.toCurrency;
-
-    let results = await Promise.all([
+    const [olderRates, latestRates] = await Promise.all([
       await CurrencyRatesService.getByDate(startDate, baseCurrency),
       await CurrencyRatesService.getByDate(endDate, baseCurrency)
     ]);
-    const oldestRate = results[0].rates[targetCurrency];
-    const latestRate = results[1].rates[targetCurrency];
+
+    const targetCurrency = this.state.toCurrency;
+    const oldestRateValue = olderRates.rates[targetCurrency];
+    const latestRateValue = latestRates.rates[targetCurrency];
+
+    const calculationResults = await this.calculateValueAndPercentChange(oldestRateValue, latestRateValue);
+
+    // updating results
+    this.setState({
+      customChangeValue: calculationResults.changeValue.toFixed(4),
+      customChangePercent: calculationResults.changePercent.toFixed(3)
+    });
+  }
+
+  async calculateValueAndPercentChange(oldestRate, latestRate) {
     // simple caluclation of growth
     const change = latestRate - oldestRate;
     // claculation of percent growth
     const changePercent = (change * 100) / latestRate;
 
-    logToConsole(oldestRate, latestRate, change, changePercent);
+    // logToConsole(oldestRate, latestRate, change, changePercent);
     return {
-      change: change,
+      changeValue: change,
       changePercent: changePercent
     };
   }
