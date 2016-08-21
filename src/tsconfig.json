@@ -28,7 +28,6 @@
   "files": [
     "typings/modules.d.ts",
     "typings/services.d.ts",
-    "app-utils.tsx",
     "app.tsx",
     "components/currency-converter-header.tsx",
     "components/currency-converter.tsx",
@@ -42,6 +41,9 @@
     "stores/app-store.spec.tsx",
     "stores/app-store.tsx",
     "test-runner.tsx",
+    "utils/accounting.tsx",
+    "utils/logging.tsx",
+    "utils/validation.tsx",
     "views/main.tsx"
   ],
   "atom": {

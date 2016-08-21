@@ -1,12 +1,3 @@
-import Accounting from 'accounting';
-
-export function logToConsole(...rest) {
-  if (!System.production) {
-    // tslint:disable-next-line
-    console.log('>>> LOGGER:', ...rest);
-  }
-}
-
 export function isInputFocused(target) {
   return target === document.activeElement;
 }
@@ -19,8 +10,4 @@ export function isNotValidCurrency(value) {
 
   const decimal = parts[1];
   return decimal && decimal.length > 2;
-}
-
-export function formatMoney(value) {
-  return Accounting.formatMoney(value, "");
 }

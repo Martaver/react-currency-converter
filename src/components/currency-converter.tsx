@@ -3,7 +3,8 @@ import * as React from 'react';
 import Money from 'money';
 
 // import { UserData } from '../stores/app-store';
-import * as AppUtils from '../app-utils';
+import { formatMoney } from '../utils/accounting';
+import { isInputFocused, isNotValidCurrency } from '../utils/validation';
 import * as FixerService from '../services/fixer/index';
 import { CurrencySelect } from './currency-select';
 import { CurrencyInput } from './currency-input';
@@ -96,12 +97,12 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
     let newFromValue = node.target.value;
     // check lenght on formatted value to include delimiters, also checking if lenght has reduced
     // to cover overflow edge case, validate valid currency format
-    if (AppUtils.isNotValidCurrency(newFromValue)
-      || (AppUtils.formatMoney(newFromValue).length > NUMBERS_LIMIT && newFromValue.length >= this.state.fromValue.length)
+    if (isNotValidCurrency(newFromValue)
+      || (formatMoney(newFromValue).length > NUMBERS_LIMIT && newFromValue.length >= this.state.fromValue.length)
     ) return;
     // format input value only when focus is lost because caret position will jump
-    if (!AppUtils.isInputFocused(node.target)) {
-      newFromValue = AppUtils.formatMoney(newFromValue);
+    if (!isInputFocused(node.target)) {
+      newFromValue = formatMoney(newFromValue);
     }
 
     const newToValue = this.calculateRateOrEmptyString(
@@ -111,7 +112,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
       true
     );
     // check lenght of calculated value so do not extend a limit
-    if (AppUtils.formatMoney(newToValue).length > NUMBERS_LIMIT) return;
+    if (formatMoney(newToValue).length > NUMBERS_LIMIT) return;
 
     this.setState({
       fromValue: newFromValue,
@@ -123,12 +124,12 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
     let newToValue = node.target.value;
     // check lenght on formatted value to include delimiters, also checking if lenght has reduced
     // to cover overflow edge case, validate valid currency formatt
-    if (AppUtils.isNotValidCurrency(newToValue)
-      || (AppUtils.formatMoney(newToValue).length > NUMBERS_LIMIT && newToValue.length >= this.state.fromValue.length)
+    if (isNotValidCurrency(newToValue)
+      || (formatMoney(newToValue).length > NUMBERS_LIMIT && newToValue.length >= this.state.fromValue.length)
     ) return;
     // format input value only when focus is lost because caret position will jump
-    if (!AppUtils.isInputFocused(node.target)) {
-      newToValue = AppUtils.formatMoney(newToValue);
+    if (!isInputFocused(node.target)) {
+      newToValue = formatMoney(newToValue);
     }
 
     const newFromValue = this.calculateRateOrEmptyString(
@@ -138,7 +139,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
       true
     );
     // check lenght of calculated value so do not extend a limit
-    if (AppUtils.formatMoney(newFromValue).length > NUMBERS_LIMIT) return;
+    if (formatMoney(newFromValue).length > NUMBERS_LIMIT) return;
 
     this.setState({
       fromValue: newFromValue,
@@ -153,7 +154,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
         .from(fromCurrency)
         .to(toCurrency);
 
-      return format ? AppUtils.formatMoney(value) : value;
+      return format ? formatMoney(value) : value;
     } else {
       return "";
     }

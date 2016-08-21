@@ -3,7 +3,7 @@ import './main.css!';
 // lib imports
 import * as React from 'react';
 // components imports
-import * as AppUtils from '../app-utils';
+import {logToConsole} from '../utils/logging';
 import * as FixerService from '../services/fixer/index';
 import { AppStore } from '../stores/app-store';
 import { CurrencyConverter } from '../components/currency-converter';
@@ -109,7 +109,7 @@ export class Main extends React.Component<IProps, IState> {
     // claculation of percent growth
     const changePercent = (change * 100) / latestRate;
 
-    AppUtils.logToConsole(oldestRate, latestRate, change, changePercent);
+    logToConsole(oldestRate, latestRate, change, changePercent);
     return {
       change: change,
       changePercent: changePercent
