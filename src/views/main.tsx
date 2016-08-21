@@ -3,7 +3,7 @@ import './main.css!';
 // lib imports
 import * as React from 'react';
 // components imports
-import {logToConsole} from '../utils/logging';
+import { logToConsole } from '../utils/index';
 import * as FixerService from '../services/fixer/index';
 import { AppStore } from '../stores/app-store';
 import { CurrencyConverter } from '../components/currency-converter';

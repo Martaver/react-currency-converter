@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import { validateStatusCode, logRejection } from '../services-utils';
+import { validateStatusCode, logRejection } from '../../utils/index';
 
 // Get the latest foreign exchange reference rates in JSON format.
 const FIXER_API_URL = 'https://api.fixer.io/';
@@ -9,7 +9,7 @@ export async function getLatest(baseCurrency?: string):
   Promise<IFixerServiceResponse> {
   let fixerLatestRates = FIXER_API_URL + 'latest';
   if (baseCurrency) {
-      fixerLatestRates += '?base=' + baseCurrency;
+    fixerLatestRates += '?base=' + baseCurrency;
   }
 
   try {
@@ -27,7 +27,7 @@ export async function getByDate(date: Date, baseCurrency?: string):
   Promise<IFixerServiceResponse> {
   let fixerRatesByDate = FIXER_API_URL + date.toISOString().slice(0, 10);
   if (baseCurrency) {
-      fixerRatesByDate += '?base=' + baseCurrency;
+    fixerRatesByDate += '?base=' + baseCurrency;
   }
 
   try {

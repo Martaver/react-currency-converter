@@ -4,3 +4,7 @@ export function logToConsole(...rest) {
     console.log('>>> LOGGER:', ...rest);
   }
 }
+
+export function logRejection(err) {
+  console.log('Request Failed:', err);
+};

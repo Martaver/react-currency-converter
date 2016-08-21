@@ -2,9 +2,7 @@
 import * as React from 'react';
 import Money from 'money';
 
-// import { UserData } from '../stores/app-store';
-import { formatMoney } from '../utils/accounting';
-import { isInputFocused, isNotValidCurrency } from '../utils/validation';
+import { formatMoney, isInputFocused, isNotValidCurrency } from '../utils/index';
 import * as FixerService from '../services/fixer/index';
 import { CurrencySelect } from './currency-select';
 import { CurrencyInput } from './currency-input';

@@ -11,3 +11,11 @@ export function isNotValidCurrency(value) {
   const decimal = parts[1];
   return decimal && decimal.length > 2;
 }
+
+export function validateStatusCode(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return true;
+  } else {
+    throw new Error(response.statusText);
+  }
+}

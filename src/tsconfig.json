@@ -37,11 +37,11 @@
     "components/currency-valuation-header-calendar.tsx",
     "components/currency-valuation-header-select.tsx",
     "services/fixer/index.tsx",
-    "services/services-utils.tsx",
     "stores/app-store.spec.tsx",
     "stores/app-store.tsx",
     "test-runner.tsx",
     "utils/accounting.tsx",
+    "utils/index.tsx",
     "utils/logging.tsx",
     "utils/validation.tsx",
     "views/main.tsx"
