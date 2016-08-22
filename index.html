@@ -5,12 +5,10 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=9"></meta>
   <title>React / TypeScript / JSPM - Starter-Kit</title>
   <link rel="stylesheet" href="loader-style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/blazecss/latest/blaze.min.css">
-  <!-- IE10 compatibility -->
-  <script>(function() {console = window.console || { log: function(){} } }());</script>
-  <script src="es6-shim.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -29,7 +27,9 @@
       </div>
     </div>
   </div>
-  <!-- body bottom scripts -->
+  <!-- IE10 compatibility -->
+  <script src="shim.min.js" charset="utf-8"></script>
+  <!-- app scripts -->
   <script src="system.js"></script>
   <script src="jspm.config.js"></script>
   <script type="text/javascript">
