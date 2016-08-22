@@ -10,7 +10,8 @@ import { CurrencyConverter } from '../components/currency-converter';
 import { CurrencyConverterHeader } from '../components/currency-converter-header';
 import { CurrencyValuationChange } from '../components/currency-valuation-change';
 
-const LOADING_PLACEHOLDER = "loading...";
+const LOADING_PLACEHOLDER = "Loading...";
+const ERROR_PLACEHOLDER = "Service Offline";
 
 interface IProps {
   storage: AppStore;
@@ -70,6 +71,14 @@ export class Main extends React.Component<IProps, IState> {
       await CurrencyRatesService.getByDate(startDate, baseCurrency),
       await CurrencyRatesService.getByDate(new Date(), baseCurrency)
     ]);
+    // if response empty service call failed
+    if (olderRates == null || latestRates == null) {
+      this.setState({
+        customChangeValue: ERROR_PLACEHOLDER,
+        customChangePercent: ERROR_PLACEHOLDER
+      });
+      return undefined;
+    }
 
     const targetCurrency = this.state.toCurrency;
     const oldestRateValue = olderRates.rates[targetCurrency];
@@ -100,6 +109,14 @@ export class Main extends React.Component<IProps, IState> {
       await CurrencyRatesService.getByDate(startDate, baseCurrency),
       await CurrencyRatesService.getByDate(endDate, baseCurrency)
     ]);
+    // if response empty service call failed
+    if (olderRates == null || latestRates == null) {
+      this.setState({
+        customChangeValue: ERROR_PLACEHOLDER,
+        customChangePercent: ERROR_PLACEHOLDER
+      });
+      return undefined;
+    }
 
     const targetCurrency = this.state.toCurrency;
     const oldestRateValue = olderRates.rates[targetCurrency];

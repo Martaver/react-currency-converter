@@ -18,7 +18,7 @@ export async function getLatest(baseCurrency?: string):
     return response.json();
   } catch (err) {
     logRejection(err);
-    return err;
+    return undefined;
   }
 }
 
@@ -36,6 +36,6 @@ export async function getByDate(date: Date, baseCurrency?: string):
     return response.json();
   } catch (err) {
     logRejection(err);
-    return err;
+    return undefined;
   }
 }

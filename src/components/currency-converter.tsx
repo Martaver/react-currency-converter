@@ -46,6 +46,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
 
   async fetchLatestRates() {
     const data = await CurrencyRatesService.getLatest();
+    if (data == null) return;
     Money.base = data.base;
     Money.rates = data.rates;
 
