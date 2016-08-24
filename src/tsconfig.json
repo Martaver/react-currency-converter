@@ -36,6 +36,7 @@
     "components/currency-valuation-change.tsx",
     "components/currency-valuation-header-calendar.tsx",
     "components/currency-valuation-header-select.tsx",
+    "pages/main-page.tsx",
     "services/fixer/currency-rates.tsx",
     "stores/app-store.spec.tsx",
     "stores/app-store.tsx",
@@ -43,8 +44,7 @@
     "utils/accounting.tsx",
     "utils/index.tsx",
     "utils/logging.tsx",
-    "utils/validation.tsx",
-    "views/main.tsx"
+    "utils/validation.tsx"
   ],
   "atom": {
     "rewriteTsconfig": true,

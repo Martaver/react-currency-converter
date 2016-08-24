@@ -10,7 +10,7 @@ if (appContainer == null) {
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 // components imports
-import { Main } from './views/main';
+import { Main } from './pages/main-page';
 import { AppStore } from './stores/app-store';
 
 const appStore = new AppStore();
