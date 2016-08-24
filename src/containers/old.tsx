@@ -5,7 +5,7 @@ import * as React from 'react';
 import * as CurrencyRatesService from '../services/fixer/currency-rates';
 import { AppStore } from '../stores/app-store';
 import { CurrencyConverter } from '../components/currency-converter';
-import { CurrencyConverterHeader } from '../components/currency-converter-header';
+import { PageHeader } from '../components/page-header';
 import { CurrencyValuationChange } from '../components/currency-valuation-change';
 
 const LOADING_PLACEHOLDER = "Loading...";
@@ -177,8 +177,6 @@ export class CurrencyConverterContainer extends React.Component<IProps, IState> 
 
     return (
       <div className="o-container o-container--medium c-text">
-
-        <CurrencyConverterHeader />
 
         <CurrencyConverter storage={this.props.storage}
           fromCurrency={this.state.fromCurrency} toCurrency={this.state.toCurrency}

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {CurrencyConverterContainer} from '../containers/currency-converter-container';
+import {CurrencyConverterContainer} from '../containers/currency-converter-container/index';
+import { PageHeader } from '../components/index';
 
 export function CurrencyConverterPage() {
   return (
     <div>
-      <h3>Currency Converter</h3>
+      <PageHeader title="Currency Converter" />
       <CurrencyConverterContainer />
     </div>
   );
