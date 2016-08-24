@@ -38,6 +38,7 @@
     "components/currency-valuation-header-calendar.tsx",
     "components/currency-valuation-header-select.tsx",
     "containers/currency-converter-container.tsx",
+    "containers/old.tsx",
     "layouts/main-layout.tsx",
     "pages/about-page.tsx",
     "pages/home-page.tsx",
