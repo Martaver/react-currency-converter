@@ -26,14 +26,14 @@ test('testing action creator currencyRatesFetchSuccess', function(t) {
 
 });
 
-test('testing action creator currencyRatesFetchFailure', function(t) {
+test('testing action creator currencyRatesFetchError', function(t) {
   // arrange
   const errorMessage = 'Error Message';
 
   // act
-  const actual = reducerModule.loadCurrencyRatesFailure(errorMessage);
+  const actual = reducerModule.loadCurrencyRatesError(errorMessage);
   const expected = {
-    type: reducerModule.LOAD_CURRENCY_RATES_FAILURE,
+    type: reducerModule.LOAD_CURRENCY_RATES_ERROR,
     payload: errorMessage
   };
 

@@ -1,9 +1,6 @@
-// style imports
-import './main.css!';
 // lib imports
 import * as React from 'react';
 // components imports
-// import { logToConsole } from '../utils/index';
 import * as CurrencyRatesService from '../services/fixer/currency-rates';
 import { AppStore } from '../stores/app-store';
 import { CurrencyConverter } from '../components/currency-converter';
@@ -31,7 +28,7 @@ interface IState {
   customChangePercent?: string;
 }
 // App pure component
-export class Main extends React.Component<IProps, IState> {
+export class CurrencyConverterContainer extends React.Component<IProps, IState> {
   state: IState = {
     selectedPeriod: this.props.storage.selectedPeriod,
     selectedStartDate: this.props.storage.selectedStartDate,

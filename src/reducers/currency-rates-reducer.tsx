@@ -3,7 +3,7 @@ import { createAction } from 'redux-actions';
 // Actions - LOAD, CREATE, UPDATE, REMOVE
 export const LOAD_CURRENCY_RATES = 'currencyRates/LOAD';
 export const LOAD_CURRENCY_RATES_SUCCESS = 'currencyRates/LOAD_SUCCESS';
-export const LOAD_CURRENCY_RATES_FAILURE = 'currencyRates/LOAD_FAILURE';
+export const LOAD_CURRENCY_RATES_ERROR = 'currencyRates/LOAD_ERROR';
 
 const defaultState = {
   isLoading: false,
@@ -25,7 +25,7 @@ export default function reducer(state = defaultState, action: FluxStandardAction
         state,
         { results: action.payload, lastUpdated: Date.now() }
       );
-    case LOAD_CURRENCY_RATES_FAILURE:
+    case LOAD_CURRENCY_RATES_ERROR:
       return Object.assign(
         defaultState,
         state,
@@ -41,4 +41,4 @@ export const loadCurrencyRates = createAction(LOAD_CURRENCY_RATES);
 
 export const loadCurrencyRatesSuccess = createAction(LOAD_CURRENCY_RATES_SUCCESS);
 
-export const loadCurrencyRatesFailure = createAction(LOAD_CURRENCY_RATES_FAILURE);
+export const loadCurrencyRatesError = createAction(LOAD_CURRENCY_RATES_ERROR);
