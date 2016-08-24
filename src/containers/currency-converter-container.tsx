@@ -23,7 +23,6 @@ export class CurrencyConverterContainer extends React.Component<IProps, IState> 
     return (
       <div className="o-container o-container--medium c-text">
         <CurrencyConverterHeader />
-
       </div>
     );
   }

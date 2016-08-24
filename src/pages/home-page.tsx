@@ -5,7 +5,7 @@ export function HomePage() {
   return (
     <div>
       <h3>Home Page</h3>
-      <p>Cos tam</p>
+      <p>Just a placeholder right now for a real content.</p>
     </div>
   );
 };
