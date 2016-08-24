@@ -26,7 +26,7 @@
     "deploy": "cd dist && git checkout gh-pages && git add --all && git commit -m \"New Release\" && git push",
     "bd": "npm run build && npm run deploy",
     "bdd": "npm run build-deps && npm run deploy",
-    "test": "exit 0 && jspm run src/test-runner | faucet",
+    "test": "jspm run src/test-runner | faucet",
     "lint": "tslint ./src/**/*.ts*"
   },
   "devDependencies": {

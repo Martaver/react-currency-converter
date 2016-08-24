@@ -26,6 +26,7 @@
     "!node_modules/**"
   ],
   "files": [
+    "typings/common.d.ts",
     "typings/modules.d.ts",
     "typings/services.d.ts",
     "app.tsx",
@@ -37,6 +38,9 @@
     "components/currency-valuation-header-calendar.tsx",
     "components/currency-valuation-header-select.tsx",
     "pages/main-page.tsx",
+    "reducers/create-store.tsx",
+    "reducers/currency-rates-reducer.tsx",
+    "reducers/tests/currency-rates-reducer.tests.tsx",
     "services/fixer/currency-rates.tsx",
     "stores/app-store.spec.tsx",
     "stores/app-store.tsx",
