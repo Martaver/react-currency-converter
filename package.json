@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@types/blue-tape": "^0.1.29",
+    "@types/classnames": "0.0.28",
     "@types/react": "^0.14.27",
     "@types/react-dom": "^0.14.14",
     "@types/react-input-calendar": "0.0.29",
