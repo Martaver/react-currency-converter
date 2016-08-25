@@ -12,8 +12,8 @@ insertCss(csjs.getCss(styles));
 
 export function LayoutHeader({text = ''}) {
   return (
-    <div className={`u-letter-box--medium u-centered ${styles.header}`}>
+    <header className={`u-letter-box--medium u-centered ${styles.header}`}>
       <h3 className="c-heading c-heading--medium u-window-box--none">{text}</h3>
-    </div>
+    </header>
   );
 }
