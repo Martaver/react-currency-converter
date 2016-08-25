@@ -10,8 +10,8 @@ export function LayoutTopNav({children = undefined}) {
   );
 }
 
-export function LayoutTopNavItem(
-  {route = '/', text = '', right = false, primary = false}
+export function LayoutTopNavLink(
+  {children = undefined, href = '/', right = false, primary = false}
 ) {
 
   const navItem = 'c-nav__item' +
@@ -20,6 +20,8 @@ export function LayoutTopNavItem(
   const linkActiveClass = 'c-nav__item--active';
 
   return (
-    <Link to={route} className={navItem} activeClassName={linkActiveClass}>{text}</Link>
+    <Link to={href} className={navItem} activeClassName={linkActiveClass}>
+      {children}
+    </Link>
   );
 }

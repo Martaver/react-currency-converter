@@ -10,10 +10,10 @@ const styles = csjs`
 `;
 insertCss(csjs.getCss(styles));
 
-export function LayoutHeader({text = ''}) {
+export function LayoutHeader({children = undefined}) {
   return (
     <header className={`u-letter-box--medium u-centered ${styles.header}`}>
-      <h3 className="c-heading c-heading--medium u-window-box--none">{text}</h3>
+      <h3 className="c-heading c-heading--medium u-window-box--none">{children}</h3>
     </header>
   );
 }
