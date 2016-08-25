@@ -55,6 +55,7 @@
       "classnames": "npm:classnames@^2.2.5",
       "csjs": "npm:csjs@^1.0.6",
       "css": "github:systemjs/plugin-css@^0.1.23",
+      "insert-css": "npm:insert-css@^1.0.0",
       "money": "npm:money@^0.2.0",
       "react-dom": "npm:react-dom@^15.2.1",
       "react-input-calendar": "npm:react-input-calendar@^0.3.11",

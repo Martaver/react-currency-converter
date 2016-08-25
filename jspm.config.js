@@ -377,6 +377,7 @@ SystemJS.config({
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
     "http": "github:jspm/nodelibs-http@0.2.0-alpha",
     "https": "github:jspm/nodelibs-https@0.2.0-alpha",
+    "insert-css": "npm:insert-css@1.0.0",
     "module": "github:jspm/nodelibs-module@0.2.0-alpha",
     "moment": "npm:moment@2.14.1",
     "moment-range": "npm:moment-range@2.2.0",
