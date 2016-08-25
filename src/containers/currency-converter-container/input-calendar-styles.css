@@ -1,11 +1,3 @@
-.c-link--right {
-  float: right;;
-}
-
-.c-choice--padded {
-  padding: 0px 6px !important;
-}
-
 /** Calendar Styles */
 .input-calendar {
   font-family: 'Pontano Sans', sans-serif;

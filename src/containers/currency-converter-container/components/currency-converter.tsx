@@ -2,8 +2,8 @@
 import * as React from 'react';
 import Money from 'money';
 
-import { formatMoney, isInputFocused, isNotValidCurrency } from '../utils/index';
-import * as CurrencyRatesService from '../services/fixer/currency-rates';
+import { formatMoney, isInputFocused, isNotValidCurrency } from '../../../utils/index';
+import * as CurrencyRatesService from '../../../services/fixer/currency-rates';
 import { CurrencySelect } from './currency-select';
 import { CurrencyInput } from './currency-input';
 

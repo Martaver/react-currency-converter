@@ -2,11 +2,10 @@
 // lib imports
 import * as React from 'react';
 // components imports
-import * as CurrencyRatesService from '../services/fixer/currency-rates';
-import { AppStore } from '../stores/app-store';
-import { CurrencyConverter } from '../components/currency-converter';
-import { PageHeader } from '../components/page-header';
-import { CurrencyValuationChange } from '../components/currency-valuation-change';
+import * as CurrencyRatesService from '../../services/fixer/currency-rates';
+import { AppStore } from '../../stores/app-store';
+import { CurrencyConverter } from './components/currency-converter';
+import { CurrencyValuationChange } from './components/currency-valuation-change';
 
 const LOADING_PLACEHOLDER = "Loading...";
 const ERROR_PLACEHOLDER = "Service Offline";
