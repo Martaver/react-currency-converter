@@ -1,26 +1,36 @@
 import * as React from 'react';
+import classNames from 'classnames';
 import { Link } from 'react-router';
 
-export function LayoutTopNav({children = undefined}) {
+// const styles = {};
+
+export function LayoutTopNav({className = '', children = undefined}) {
+  const navClass = classNames(
+    className,
+    'c-nav c-nav--inline c-nav--high'
+  );
 
   return (
-    <nav className="c-nav c-nav--inline c-nav--high">
+    <nav className={navClass}>
       {children}
     </nav>
   );
 }
 
 export function LayoutTopNavLink(
-  {children = undefined, href = '/', right = false, primary = false}
+  {className = '', children = undefined, href = '/', isRight = false, isPrimary = false}
 ) {
 
-  const navItem = 'c-nav__item' +
-    (primary ? ' c-nav__item--primary' : '') +
-    (right ? ' c-nav__item--right' : '');
-  const linkActiveClass = 'c-nav__item--active';
+  const linkClass = classNames(className, 'c-nav__item', {
+    'c-nav__item--primary': isPrimary,
+    'c-nav__item--right': isRight
+  });
+  const linkActiveClass = classNames(
+    'c-nav__item--active'
+  );
 
   return (
-    <Link to={href} className={navItem} activeClassName={linkActiveClass}>
+    <Link to={href} className={linkClass} activeClassName={linkActiveClass}>
       {children}
     </Link>
   );

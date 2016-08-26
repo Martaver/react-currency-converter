@@ -13,9 +13,9 @@ export class MainLayout extends React.Component<{}, {}> {
       <div className="c-text">
         <LayoutHeader>
           <LayoutTopNav>
-            <LayoutTopNavLink href="/" primary> Home </LayoutTopNavLink>
+            <LayoutTopNavLink href="/" isPrimary> Home </LayoutTopNavLink>
             <LayoutTopNavLink href="/currency-converter"> Currency Converter </LayoutTopNavLink>
-            <LayoutTopNavLink href="/about" right> About </LayoutTopNavLink>
+            <LayoutTopNavLink href="/about" isRight> About </LayoutTopNavLink>
           </LayoutTopNav>
         </LayoutHeader>
 
