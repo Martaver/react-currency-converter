@@ -5,6 +5,7 @@ import * as reducerModule from '../currency-rates-reducer';
 
 test('testing action creator currencyRatesFetchSuccess', function(t) {
   // arrange
+  // tslint:disable
   const results = {
     "base": "EUR",
     "date": "2016-07-29",
@@ -12,6 +13,7 @@ test('testing action creator currencyRatesFetchSuccess', function(t) {
       "AUD": 1.4782
     }
   };
+  // tslint:enable
 
   // act
   const actual = reducerModule.loadCurrencyRatesSuccess(results);

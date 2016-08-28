@@ -30,7 +30,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
   state: LocalState = {
     currencies: JSON.parse(this.props.storage.currencies),
     fromValue: this.props.storage.fromValue,
-    toValue: ""
+    toValue: ''
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -155,7 +155,7 @@ export class CurrencyConverter extends React.Component<LocalProps, LocalState> {
 
       return format ? formatMoney(value) : value;
     } else {
-      return "";
+      return '';
     }
   }
 

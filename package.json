@@ -27,7 +27,7 @@
     "bd": "npm run build && npm run deploy",
     "bdd": "npm run build-deps && npm run deploy",
     "test": "jspm run src/test-runner | faucet",
-    "lint": "tslint ./src/**/*.ts*"
+    "lint": "tslint ./src/**/*.ts[x]"
   },
   "devDependencies": {
     "@types/blue-tape": "^0.1.29",

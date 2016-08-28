@@ -4,11 +4,11 @@ const INITIAL_DATE = (new Date()).toISOString();
 
 export class AppStore {
   // initial state
-  currencies = "{}";
-  fromCurrency = "SEK";
-  toCurrency = "EUR";
-  fromValue = "100.00";
-  selectedPeriod = "60";
+  currencies = '{}';
+  fromCurrency = 'SEK';
+  toCurrency = 'EUR';
+  fromValue = '100.00';
+  selectedPeriod = '60';
   selectedStartDate = INITIAL_DATE;
   selectedEndDate = INITIAL_DATE;
 

@@ -5,7 +5,7 @@ export function isInputFocused(target) {
 export function isNotValidCurrency(value) {
   if (value && (isNaN(parseFloat(value)) || !/^[0-9,.\s]+$/.test(value))) return true;
 
-  const parts = value.toString().split(".");
+  const parts = value.toString().split('.');
   if (parts.length > 2) return true;
 
   const decimal = parts[1];
