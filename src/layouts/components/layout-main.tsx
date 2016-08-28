@@ -1,15 +1,15 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-const styles = {
-  main: {
+const inlineStyles = {
+  background: {
     backgroundColor: '#f7f7f7'
   }
 };
 
 export function LayoutMain({className = '', children = undefined}) {
 
-  const mainClass = classNames(
+  const parentClass = classNames(
     className,
     'o-container o-container--large',
     'o-grid',
@@ -17,7 +17,7 @@ export function LayoutMain({className = '', children = undefined}) {
   );
 
   return (
-    <main className={mainClass} style={styles.main}>
+    <main className={parentClass} style={inlineStyles.background}>
       {children}
     </main>
   );

@@ -1,8 +1,16 @@
 import * as React from 'react';
+import classNames from 'classnames';
 
-export function LayoutHeader({children = undefined}) {
+// const inlineStyles = {};
+
+export function LayoutHeader({className = '', children = undefined}) {
+
+  const parentClass = classNames(
+    className
+  );
+
   return (
-    <header>
+    <header className={parentClass}>
       {children}
     </header>
   );
