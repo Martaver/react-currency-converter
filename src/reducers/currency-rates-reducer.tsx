@@ -7,7 +7,9 @@ export const LOAD_CURRENCY_RATES_ERROR = 'currencyRates/LOAD_ERROR';
 
 const defaultState = {
   isLoading: false,
-  errorMessage: null
+  errorMessage: null,
+  results: null,
+  lastUpdated: null
 };
 
 // Reducer
@@ -15,21 +17,21 @@ export default function reducer(state = defaultState, action: FluxStandardAction
   switch (action.type) {
     case LOAD_CURRENCY_RATES:
       return Object.assign(
-        defaultState,
+        {},
         state,
-        { isFetching: true }
+        { isLoading: true }
       );
     case LOAD_CURRENCY_RATES_SUCCESS:
       return Object.assign(
-        defaultState,
+        {},
         state,
-        { results: action.payload, lastUpdated: Date.now() }
+        { isLoading: false, errorMessage: null, results: action.payload, lastUpdated: Date.now() }
       );
     case LOAD_CURRENCY_RATES_ERROR:
       return Object.assign(
-        defaultState,
+        {},
         state,
-        { errorMessage: action.payload }
+        { isLoading: false, errorMessage: action.payload }
       );
 
     default: return state;

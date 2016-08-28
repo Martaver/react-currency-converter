@@ -48,6 +48,7 @@
     "layouts/components/layout-main.tsx",
     "layouts/components/layout-top-nav.tsx",
     "layouts/main-layout.tsx",
+    "reducers/currency-converter-reducer.tsx",
     "reducers/currency-rates-reducer.tsx",
     "reducers/index.tsx",
     "reducers/tests/currency-rates-reducer.tests.tsx",
