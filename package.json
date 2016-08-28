@@ -32,7 +32,7 @@
   "devDependencies": {
     "@types/blue-tape": "^0.1.29",
     "@types/classnames": "0.0.28",
-    "@types/react": "^0.14.27",
+    "@types/react": "^0.14.29",
     "@types/react-dom": "^0.14.14",
     "@types/react-input-calendar": "0.0.29",
     "@types/react-redux": "^4.4.30",
@@ -46,6 +46,7 @@
     "jspm": "^0.17.0-beta.27",
     "jspm-hmr": "^0.4.2",
     "regenerator": "^0.8.46",
+    "rimraf": "^2.5.4",
     "tslint": "^3.14.0",
     "typescript": "^1.8.10"
   },
@@ -55,7 +56,6 @@
       "accounting": "npm:accounting@^0.4.1",
       "classnames": "npm:classnames@^2.2.5",
       "csjs": "npm:csjs@^1.0.6",
-      "css": "github:systemjs/plugin-css@^0.1.23",
       "insert-css": "npm:insert-css@^1.0.0",
       "money": "npm:money@^0.2.0",
       "react-dom": "npm:react-dom@^15.2.1",
@@ -67,7 +67,8 @@
     },
     "devDependencies": {
       "blue-tape": "npm:blue-tape@^0.2.0",
-      "plugin-typescript": "github:frankwallis/plugin-typescript@^4.0.16",
+      "css": "github:systemjs/plugin-css@^0.1.26",
+      "plugin-typescript": "github:frankwallis/plugin-typescript@^5.0.9",
       "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@^0.6.0"
     },
     "peerDependencies": {
