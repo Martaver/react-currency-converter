@@ -10,15 +10,18 @@ const inlineStyles = {
 export function LayoutMain({className = '', children = undefined}) {
 
   const parentClass = classNames(
-    className,
-    'o-container o-container--large',
-    'o-grid',
-    'u-pillar-box--small'
+    className
+  );
+  const innerClass = classNames(
+    'o-container o-container--medium',
+    'u-pillar-box--medium'
   );
 
   return (
     <main className={parentClass} style={inlineStyles.background}>
-      {children}
+      <div className={innerClass}>
+        {children}
+      </div>
     </main>
   );
 }
