@@ -2,7 +2,7 @@
 
 ### Demo: https://piotrwitek.github.io/react-currency-converter/
 
-> Based on "React / Redux / TypeScript Starter-Kit" (https://github.com/piotrwitek/react-redux-typescript-starter-kit)
+> Based on "React / Redux / TypeScript - starter-kit" (https://github.com/piotrwitek/react-redux-typescript-starter-kit)
 
 
 ---
