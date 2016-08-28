@@ -30,7 +30,7 @@
     "typings/modules.d.ts",
     "typings/services.d.ts",
     "app.tsx",
-    "components/index.tsx",
+    "components/component-with-local-css.tsx",
     "containers/about-container/index.tsx",
     "containers/currency-converter-container/components/currency-converter.tsx",
     "containers/currency-converter-container/components/currency-input.tsx",
