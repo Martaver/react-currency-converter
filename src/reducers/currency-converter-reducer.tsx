@@ -22,29 +22,29 @@ export const updateTargetValue = createAction(UPDATE_TARGET_VALUE, (event) => {
 });
 
 // Reducer
-const defaultState = Immutable({
+const initialState = Immutable({
   baseCurrency: 'PLN',
   targetCurrency: 'SEK',
   baseValue: 100,
   targetValue: 100
 });
 
-export default function reducer(state = defaultState, action: FluxStandardAction<any> = {}) {
+export default function reducer(state = initialState, action: FluxStandardAction<any> = {}) {
   switch (action.type) {
     case UPDATE_BASE_CURRENCY:
-      return Object.assign({}, state, {
+      return state.merge({
         baseCurrency: action.payload
       });
     case UPDATE_TARGET_CURRENCY:
-      return Object.assign({}, state, {
+      return state.merge({
         targetCurrency: action.payload
       });
     case UPDATE_BASE_VALUE:
-      return Object.assign({}, state, {
+      return state.merge({
         baseValue: action.payload
       });
     case UPDATE_TARGET_VALUE:
-      return Object.assign({}, state, {
+      return state.merge({
         targetValue: action.payload
       });
 

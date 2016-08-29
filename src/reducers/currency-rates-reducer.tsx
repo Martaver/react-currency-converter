@@ -1,6 +1,8 @@
 import { createAction } from 'redux-actions';
 import Immutable from 'seamless-immutable';
 
+const RATES_MOCK = { 'PLN': 1, 'SEK': 2.1919 };
+
 // Action Types - LOAD, CREATE, UPDATE, REMOVE
 export const LOAD_CURRENCY_RATES = 'currencyRates/LOAD';
 export const LOAD_CURRENCY_RATES_SUCCESS = 'currencyRates/LOAD_SUCCESS';
@@ -12,32 +14,30 @@ export const loadCurrencyRatesSuccess = createAction(LOAD_CURRENCY_RATES_SUCCESS
 export const loadCurrencyRatesError = createAction(LOAD_CURRENCY_RATES_ERROR);
 
 // Reducer
-const rates = {
-  'PLN': 1,
-  'SEK': 1.4782
-};
-const defaultState = Immutable({
+const initialState = Immutable({
   isLoading: false,
   errorMessage: null,
   lastUpdated: null,
-  currencies: Object.keys(rates)
+  base: 'PLN',
+  rates: RATES_MOCK,
+  currencies: Object.keys(RATES_MOCK)
 });
 
-export default function reducer(state = defaultState, action: FluxStandardAction<any> = {}) {
+export default function reducer(state = initialState, action: FluxStandardAction<any> = {}) {
   switch (action.type) {
     case LOAD_CURRENCY_RATES:
-      return Object.assign({}, state, {
+      return state.merge({
         isLoading: true
       });
     case LOAD_CURRENCY_RATES_SUCCESS:
-      return Object.assign({}, state, {
+      return state.merge({
         isLoading: false,
         errorMessage: null,
         results: action.payload,
         lastUpdated: Date.now()
       });
     case LOAD_CURRENCY_RATES_ERROR:
-      return Object.assign({}, state, {
+      return state.merge({
         isLoading: false,
         errorMessage: action.payload
       });
