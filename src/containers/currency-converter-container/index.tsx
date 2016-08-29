@@ -3,8 +3,7 @@ import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // components imports
-import { updateBaseCurrency, updateTargetCurrency } from '../../reducers/currency-converter-reducer';
-import * as CurrencyRatesService from '../../services/fixer/currency-rates';
+import { updateBaseCurrency, updateTargetCurrency, updateBaseValue, updateTargetValue } from '../../reducers/currency-converter-reducer';
 import { CurrencyConverter } from './components/currency-converter';
 
 interface IProps {
@@ -17,27 +16,21 @@ interface IState {
 }
 
 export class CurrencyConverterContainer extends React.Component<IProps, IState> {
-
-  updateBaseCurrency = (newCurrency: string) => {
-    console.log('update base currency');
-  }
-
-  updateTargetCurrency = (newCurrency: string) => {
-    console.log('update target currency');
-  }
-
   render() {
-    console.log(this.props);
-    if (this.props.currencyConverter == null) return null;
-    const { currencies, baseCurrency, targetCurrency, baseValue, targetValue } = this.props.currencyConverter;
+    const { baseCurrency, targetCurrency, baseValue, targetValue } = this.props.currencyConverter;
+    const { currencies } = this.props.currencyRates;
+    const { actions } = this.props;
 
     return (
-      <section className="">
+      <section className="u-letter-box--super">
         <CurrencyConverter currencies={currencies}
           baseCurrency={baseCurrency} targetCurrency={targetCurrency}
-          onBaseCurrencyChange={this.updateBaseCurrency}
-          onTargetCurrencyChange={this.updateTargetCurrency}
-          baseValue={baseValue} targetValue={targetValue} />
+          baseValue={baseValue} targetValue={targetValue}
+          onBaseCurrencyChange={actions.updateBaseCurrency}
+          onTargetCurrencyChange={actions.updateTargetCurrency}
+          onBaseValueChange={actions.updateBaseValue}
+          onTargetValueChange={actions.updateTargetValue}
+          />
       </section>
     );
   }
@@ -53,7 +46,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   const actions = {
     updateBaseCurrency,
-    updateTargetCurrency
+    updateTargetCurrency,
+    updateBaseValue,
+    updateTargetValue
   };
 
   return {
