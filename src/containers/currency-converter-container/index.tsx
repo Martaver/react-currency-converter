@@ -3,12 +3,14 @@ import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // components imports
+import { updateBaseCurrency, updateTargetCurrency } from '../../reducers/currency-converter-reducer';
 import * as CurrencyRatesService from '../../services/fixer/currency-rates';
 import { CurrencyConverter } from './components/currency-converter';
 
 interface IProps {
   currencyConverter: any;
   currencyRates: any;
+  actions: any;
 }
 
 interface IState {
@@ -47,11 +49,16 @@ function mapStateToProps(state) {
     currencyRates: state.currencyRates
   };
 }
-const actions = {};
+
 function mapDispatchToProps(dispatch) {
+  const actions = {
+    updateBaseCurrency,
+    updateTargetCurrency
+  };
+
   return {
     actions: bindActionCreators(actions, dispatch)
   };
 }
 
-export default connect(mapStateToProps)(CurrencyConverterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencyConverterContainer);

@@ -4,7 +4,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import { MainLayout } from './layouts/main-layout';
 import { HomeContainer } from './containers/home-container/index';
 import { AboutContainer } from './containers/about-container/index';
-import { CurrencyConverterContainer } from './containers/currency-converter-container/index';
+import CurrencyConverterContainer from './containers/currency-converter-container/index';
 
 export const router = (
   <Router history={hashHistory}>
