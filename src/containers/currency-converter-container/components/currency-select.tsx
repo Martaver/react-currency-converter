@@ -1,15 +1,12 @@
 import * as React from 'react';
 
-export function CurrencySelect({currencies, selectedCurrency, onSelect}) {
+export function CurrencySelect({currencies, selectedCurrency, onChange}) {
   return (
-    <div className="">
-      <select className="c-choice c-choice--padded" value={selectedCurrency} onChange={onSelect}>
-        {
-          Object.keys(currencies).map((currencyKey) => {
-            return <option key={currencyKey}>{currencyKey}</option>;
-          })
-        }
-      </select>
-    </div>
+    <select className="c-choice c-choice--padded"
+      value={selectedCurrency} onChange={onChange}>
+      {currencies.map(currency =>
+        <option key={currency}>{currency}</option>
+      )}
+    </select>
   );
 }
