@@ -13,8 +13,7 @@ export function LayoutMain({className = '', children = undefined}) {
     className
   );
   const innerClass = classNames(
-    'o-container o-container--medium',
-    'u-pillar-box--medium'
+    'o-container o-container--medium'
   );
 
   return (

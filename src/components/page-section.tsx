@@ -1,7 +1,9 @@
 import * as React from 'react';
 import classNames from 'classnames';
 
-// const inlineStyles = {};
+const inlineStyles = {
+  minHeight: { minHeight: '200px' }
+};
 
 export function PageSection({className = '', children = undefined}) {
 
@@ -9,13 +11,13 @@ export function PageSection({className = '', children = undefined}) {
     className,
     'o-grid'
   );
-  const cellClas = classNames(
+  const cellClass = classNames(
     'o-grid__cell'
   );
 
   return (
     <section className={parentClass}>
-        <div className={cellClas}>{children}</div>
+      <div className={cellClass}>{children}</div>
     </section>
   );
 }

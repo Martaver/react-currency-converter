@@ -8,8 +8,8 @@ export function PageHero({className = '', children = undefined,
 
   const parentClass = classNames(
     className,
-    'c-hero u-letter-box--super',
-    'u-centered'
+    'c-hero',
+    'u-letter-box--super u-centered'
   );
 
   return (
