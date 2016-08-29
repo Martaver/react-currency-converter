@@ -391,6 +391,7 @@ SystemJS.config({
     "react-input-calendar": "npm:react-input-calendar@0.3.11",
     "react-redux": "npm:react-redux@4.4.5",
     "react-router": "npm:react-router@2.7.0",
+    "react-router-redux": "npm:react-router-redux@4.0.5",
     "redux": "npm:redux@3.5.2",
     "redux-actions": "npm:redux-actions@0.11.0",
     "seamless-immutable": "npm:seamless-immutable@6.1.1",
