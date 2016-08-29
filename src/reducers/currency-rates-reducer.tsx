@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import Immutable from 'seamless-immutable';
 
 // Action Types - LOAD, CREATE, UPDATE, REMOVE
 export const LOAD_CURRENCY_RATES = 'currencyRates/LOAD';
@@ -15,12 +16,12 @@ const rates = {
   'PLN': 1,
   'SEK': 1.4782
 };
-const defaultState = {
+const defaultState = Immutable({
   isLoading: false,
   errorMessage: null,
   lastUpdated: null,
   currencies: Object.keys(rates)
-};
+});
 
 export default function reducer(state = defaultState, action: FluxStandardAction<any> = {}) {
   switch (action.type) {
