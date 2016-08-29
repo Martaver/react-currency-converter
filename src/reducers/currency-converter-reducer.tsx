@@ -25,8 +25,8 @@ export const updateTargetValue = createAction(UPDATE_TARGET_VALUE, (event) => {
 const initialState = Immutable({
   baseCurrency: 'PLN',
   targetCurrency: 'SEK',
-  baseValue: 100,
-  targetValue: 100
+  baseValue: 0,
+  targetValue: 0
 });
 
 export default function reducer(state = initialState, action: FluxStandardAction<any> = {}) {
