@@ -13,22 +13,39 @@ declare module 'es6-promise' {
   export default def;
 }
 
-declare module "money" {
+declare module 'money' {
   const lib: any;
   export default lib;
 }
 
-declare module "accounting" {
+declare module 'accounting' {
   const lib: any;
   export default lib;
 }
 
-declare module "csjs" {
+declare module 'csjs' {
   const lib: any;
   export default lib;
 }
 
-declare module "insert-css" {
+declare module 'insert-css' {
   const lib: any;
   export default lib;
+}
+
+declare module 'seamless-immutable' {
+  interface IImmutableArray {
+    asMutable(): any[];
+  }
+  function Immutable(array: any[]): IImmutableArray;
+
+  interface IImmutableObject {
+    from(object: Object): IImmutableObject;
+    merge(obj: Object): IImmutableObject;
+    without(key: string | string[], ...restKeys: string[]): IImmutableObject;
+    asMutable(): Object;
+  }
+  function Immutable(object: Object): IImmutableObject;
+
+  export default Immutable;
 }
