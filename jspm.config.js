@@ -220,7 +220,8 @@ SystemJS.config({
     "map": {
       "plugin-typescript": "github:frankwallis/plugin-typescript@4.0.16",
       "systemjs-hot-reloader": "github:capaj/systemjs-hot-reloader@0.6.0",
-      "blue-tape": "npm:blue-tape@0.2.0"
+      "blue-tape": "npm:blue-tape@0.2.0",
+      "css": "github:systemjs/plugin-css@0.1.23"
     },
     "packages": {
       "github:frankwallis/plugin-typescript@4.0.16": {
@@ -371,7 +372,6 @@ SystemJS.config({
     "constants": "github:jspm/nodelibs-constants@0.2.0-alpha",
     "crypto": "github:jspm/nodelibs-crypto@0.2.0-alpha",
     "csjs": "npm:csjs@1.0.6",
-    "css": "github:systemjs/plugin-css@0.1.23",
     "domain": "github:jspm/nodelibs-domain@0.2.0-alpha",
     "events": "github:jspm/nodelibs-events@0.2.0-alpha",
     "fs": "github:jspm/nodelibs-fs@0.2.0-alpha",
@@ -393,6 +393,7 @@ SystemJS.config({
     "react-router": "npm:react-router@2.7.0",
     "redux": "npm:redux@3.5.2",
     "redux-actions": "npm:redux-actions@0.11.0",
+    "seamless-immutable": "npm:seamless-immutable@6.1.1",
     "stream": "github:jspm/nodelibs-stream@0.2.0-alpha",
     "string_decoder": "github:jspm/nodelibs-string_decoder@0.2.0-alpha",
     "tty": "github:jspm/nodelibs-tty@0.2.0-alpha",
