@@ -13,23 +13,20 @@ import CurrencyConverterContainer from './containers/currency-converter-containe
 import { store } from './store';
 const history = syncHistoryWithStore(hashHistory, store) as any;
 
-
-class App extends React.Component<{}, {}> {
-  render() {
-    return (
-      <Provider store={store}>
-        <Router history={history}>
-          <Route component={MainLayout}>
-            <Route path="/" component={HomeContainer}/>
-            <Route path="/about" component={AboutContainer}/>
-            <Route path="/currency-converter" component={CurrencyConverterContainer}/>
-          </Route>
-        </Router>
-      </Provider>
-    );
-  }
+function App() {
+  return (
+    <Provider store={store}>
+      <Router history={history}>
+        <Route component={MainLayout}>
+          <Route path="/" component={HomeContainer}/>
+          <Route path="/about" component={AboutContainer}/>
+          <Route path="/currency-converter" component={CurrencyConverterContainer}/>
+        </Route>
+      </Router>
+    </Provider>
+  );
 }
 
-export const app: any = ReactDOM.render(
+export const app = ReactDOM.render(
   <App />, document.getElementById('app-container')
 );
