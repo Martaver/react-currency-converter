@@ -1,10 +1,7 @@
-export function logToConsole(...rest) {
-  if (!System.production) {
-    // tslint:disable-next-line
-    console.log('>>> LOGGER:', ...rest);
-  }
+export function logToConsole(...restParams: any[]) {
+  console.log('>>> LOGGER:', ...restParams);
 }
 
-export function logRejection(err) {
+export function logRejection(err: Error) {
   console.log('Request Failed:', err);
 };
