@@ -21,6 +21,6 @@
   "verbose": true,
   "globals": {
     "window": {},
-    "__TS_CONFIG__": "<rootDir>/src/tsconfig.json"
+    "__TS_CONFIG__": "<rootDir>tsconfig.json"
   }
 }
