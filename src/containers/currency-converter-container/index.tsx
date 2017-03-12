@@ -5,8 +5,6 @@ import { returntypeof } from 'react-redux-typescript';
 import { RootState } from '../../store';
 import { ActionCreators } from '../../store/currency-converter/reducer';
 import * as CurrencyRatesSelectors from '../../store/currency-rates/selectors';
-import { PageHeader } from '../../components/page-header';
-import { PageSection } from '../../components/page-section';
 import { CurrencyConverter } from './components/currency-converter';
 
 const mapStateToProps = (state: RootState) => ({
@@ -36,9 +34,9 @@ class CurrencyConverterContainer extends React.Component<Props, State> {
 
     return (
       <article>
-        <PageHeader>Currency Converter</PageHeader>
+        <header>Currency Converter</header>
 
-        <PageSection className="u-centered">
+        <section className="u-centered">
           <p>
             Example application to showcase TypeScript patterns used in React & Redux projects.
           </p>
@@ -49,9 +47,9 @@ class CurrencyConverterContainer extends React.Component<Props, State> {
           <p>
             Async Flows are handled using <a href="https://github.com/redux-observable/redux-observable/">redux-observable</a>
           </p>
-        </PageSection>
+        </section>
 
-        <PageSection className="u-letter-box--xlarge">
+        <section className="u-letter-box--xlarge">
           <CurrencyConverter currencies={currencies}
             baseCurrency={baseCurrency} targetCurrency={targetCurrency}
             baseValue={baseValue} targetValue={targetValue}
@@ -60,7 +58,7 @@ class CurrencyConverterContainer extends React.Component<Props, State> {
             onBaseValueChange={changeBaseValue}
             onTargetValueChange={changeTargetValue}
           />
-        </PageSection>
+        </section>
       </article>
     );
   }
