@@ -24,7 +24,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noResolve": false,
-    "outDir": "../out",
+    "outDir": "out/",
     "newLine": "LF",
     "removeComments": true,
     "sourceMap": true,
@@ -37,11 +37,10 @@
     ]
   },
   "include": [
-    "**/*"
+    "src/**/*"
   ],
   "exclude": [
-    "node_modules/**/",
-    "jspm_packages/**/"
+    "node_modules/**/"
   ],
   "compileOnSave": false,
   "vscode": {
@@ -49,19 +48,5 @@
   },
   "atom": {
     "rewriteTsconfig": true
-  },
-  "formatCodeOptions": {
-    "indentSize": 2,
-    "tabSize": 2,
-    "newLineCharacter": "\r\n",
-    "convertTabsToSpaces": true,
-    "insertSpaceAfterCommaDelimiter": true,
-    "insertSpaceAfterSemicolonInForStatements": true,
-    "insertSpaceBeforeAndAfterBinaryOperators": true,
-    "insertSpaceAfterKeywordsInControlFlowStatements": true,
-    "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
-    "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
-    "placeOpenBraceOnNewLineForFunctions": false,
-    "placeOpenBraceOnNewLineForControlBlocks": false
   }
 }

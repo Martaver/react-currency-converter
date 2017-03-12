@@ -11,12 +11,12 @@
   "scripts": {
     "clean": "rm -rf node_modules",
     "reinstall": "rm -rf node_modules && yarn install",
-    "dev": "NODE_ENV=development node webpack/server.js",
-    "build": "rm -rf dist && NODE_ENV=production webpack --config webpack/prod.config.js",
+    "dev": "",
+    "build": "rm -rf dist && NODE_ENV=production",
     "prod": "",
     "lint": "tslint --project 'src/tsconfig.json'",
-    "tsc": "tsc -p src/ --noEmit",
-    "tsc:watch": "tsc -p src/ --noEmit -w",
+    "tsc": "tsc -p tsconfig.json --noEmit",
+    "tsc:watch": "tsc -p tsconfig.json --noEmit -w",
     "test": "jest --config jest.json",
     "test:update": "jest --config jest.json -u",
     "precommit": "yarn run lint",
@@ -24,20 +24,19 @@
     "deploy:init": "git clone https://github.com/piotrwitek/react-currency-converter --branch gh-pages dist",
     "deploy": "git checkout gh-pages && cd dist && git add --all && git commit -m \"New Release\" && git push"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-observable": "^0.14.1",
+    "rxjs": "^5.2.0"
+  },
   "devDependencies": {
-    "@types/blue-tape": "^0.1.29",
-    "@types/react": "^0.14.27",
-    "@types/react-dom": "^0.14.14",
-    "@types/react-input-calendar": "0.0.27",
-    "@types/tape": "^4.2.27",
-    "@types/whatwg-fetch": "0.0.27",
-    "faucet": "0.0.1",
-    "husky": "^0.11.6",
-    "jspm": "^0.17.0-beta.24",
-    "jspm-hmr": "^0.4.2",
-    "regenerator": "^0.8.46",
-    "tslint": "^3.14.0",
-    "typescript": "^1.8.10"
+    "husky": "^0.13.2",
+    "jest": "^19.0.2",
+    "ts-jest": "^19.0.0",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1"
   }
 }
