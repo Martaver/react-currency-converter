@@ -12,7 +12,7 @@
     "noResolve": false,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "noEmit": true,
+    "noEmit": false,
     "noEmitOnError": true,
     "noEmitHelpers": true,
     "importHelpers": true,
@@ -20,15 +20,15 @@
     "emitDecoratorMetadata": true,
     "preserveConstEnums": true,
     "pretty": true,
-    "strictNullChecks": true,
-    "declaration": false,
-    "sourceMap": true,
+    "declaration": true,
     "removeComments": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
     "isolatedModules": false,
-    "outDir": "src_out/",
-    "jsx": "react",
-    "module": "commonjs",
     "moduleResolution": "node",
+    "outDir": "lib/",
+    "jsx": "react",
+    "module": "es2015",
     "target": "es5",
     "lib": [
       "dom",
@@ -36,9 +36,7 @@
       "es2017.object"
     ]
   },
-  "include": [
-    "src/"
-  ],
+  "include": [],
   "exclude": [
     "node_modules/"
   ],
