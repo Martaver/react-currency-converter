@@ -9,13 +9,13 @@ charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 
-# Indentation for md files
-[*.md]
+# Text / Doc files
+[*.{md,html}]
 max_line_length = 0
 trim_trailing_whitespace = false
 
 # Indentation for all source files
-[*.{json,js,jsx,ts,tsx,css,html}]
+[*.{json,js,jsx,ts,tsx,css}]
 max_line_length = 80
 trim_trailing_whitespace = true
 indent_style = space

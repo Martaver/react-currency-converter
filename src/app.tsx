@@ -13,6 +13,12 @@ function App() {
   );
 }
 
-export const app = ReactDOM.render(
-  <App />, document.getElementById('app-container'),
-);
+ReactDOM.render(<App />, document.getElementById('app-container'));
+
+import { setStatefulModules } from 'fuse-box/modules/fuse-hmr';
+
+setStatefulModules(name => {
+  console.log(name);
+  // Add the things you think are stateful:
+  return /router/.test(name) || /state/.test(name);
+});
