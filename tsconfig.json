@@ -1,35 +1,35 @@
 {
   "compilerOptions": {
-    "strictNullChecks": true,
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "newLine": "LF",
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
+    "noResolve": false,
     "noUnusedLocals": true,
     "noUnusedParameters": false,
-    "preserveConstEnums": true,
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
     "noEmit": true,
     "noEmitOnError": true,
     "noEmitHelpers": true,
     "importHelpers": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "preserveConstEnums": true,
     "pretty": true,
+    "strictNullChecks": true,
     "declaration": false,
+    "sourceMap": true,
+    "removeComments": true,
     "isolatedModules": false,
+    "outDir": "src_out/",
+    "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
-    "noResolve": false,
-    "outDir": "out/",
-    "newLine": "LF",
-    "removeComments": true,
-    "sourceMap": true,
     "target": "es5",
-    "jsx": "react",
     "lib": [
       "dom",
       "es2016",
@@ -37,10 +37,10 @@
     ]
   },
   "include": [
-    "src/**/*"
+    "src/"
   ],
   "exclude": [
-    "node_modules/**/"
+    "node_modules/"
   ],
   "compileOnSave": false,
   "vscode": {

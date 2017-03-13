@@ -30,6 +30,7 @@ const rootEpic = combineEpics(
 const epicMiddleware = createEpicMiddleware(rootEpic);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+// store singleton instance
 export const store = createStore(
   rootReducer,
   recoverState(),

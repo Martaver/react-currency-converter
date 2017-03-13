@@ -14,23 +14,17 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
-# node-waf configuration
-.lock-wscript
-
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Typescript emmited files
-src/**/*.js
-src/**/*.map
-
 # Dependency directory
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules
-jspm_packages
+node_modules/
+jspm_packages/
 
-# Build directory
-.fusebox
-build
-out
-dist
+# Cache
+.fusebox/
+
+# Build directories
+src_out/
+build/
+dist/
