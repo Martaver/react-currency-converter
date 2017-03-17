@@ -1,17 +1,17 @@
 import * as React from 'react';
 
-interface Props {
+export interface Props {
   value: string;
   onChange: (newValue: string) => void;
 }
 
 export function CurrencyInput({ value = 0, onChange }: Props) {
 
-  const handleChange = (ev: React.SyntheticEvent<HTMLInputElement>) => {
-    onChange(ev.currentTarget.value);
+  const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(ev.target.value);
   };
 
-  const handleBlur = (ev: React.SyntheticEvent<HTMLInputElement>) => {
+  const handleBlur = (ev: React.FocusEvent<HTMLInputElement>) => {
     onChange(parseFloat(ev.currentTarget.value).toFixed(2));
   };
 
