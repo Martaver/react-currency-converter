@@ -17,7 +17,6 @@ const dispatchToProps = {
   changeBaseValue: ActionCreators.ChangeBaseValue.create,
   changeTargetValue: ActionCreators.ChangeTargetValue.create,
 };
-export default connect(mapStateToProps, dispatchToProps)(CurrencyConverterContainer);
 
 const stateProps = returntypeof(mapStateToProps);
 type Props = typeof stateProps & typeof dispatchToProps;
@@ -63,3 +62,6 @@ class CurrencyConverterContainer extends React.Component<Props, State> {
     );
   }
 }
+
+const decorator = connect(mapStateToProps, dispatchToProps);
+export default decorator(CurrencyConverterContainer);
