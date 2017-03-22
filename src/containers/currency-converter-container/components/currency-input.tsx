@@ -8,7 +8,7 @@ export interface Props {
 export function CurrencyInput({ value = 0, onChange }: Props) {
 
   const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(ev.target.value);
+    onChange(ev.currentTarget.value);
   };
 
   const handleBlur = (ev: React.FocusEvent<HTMLInputElement>) => {

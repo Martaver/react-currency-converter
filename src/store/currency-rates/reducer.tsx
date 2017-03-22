@@ -21,12 +21,12 @@ export const loadCurrencyRatesError = (payload: string) => ({
 });
 
 // Action Types
-const ActionTypes = {
+export const ActionTypes = {
   loadCurrencyRates: returntypeof(loadCurrencyRates),
   loadCurrencyRatesSuccess: returntypeof(loadCurrencyRatesSuccess),
   loadCurrencyRatesError: returntypeof(loadCurrencyRatesError),
 };
-type Action = typeof ActionTypes[keyof typeof ActionTypes];
+export type Action = typeof ActionTypes[keyof typeof ActionTypes];
 
 // State
 export type State = {

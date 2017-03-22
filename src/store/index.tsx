@@ -3,10 +3,10 @@ import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
 import {
-  default as currencyRatesReducer, State as CurrencyRatesState,
+  default as currencyRatesReducer, State as CurrencyRatesState, Action as CurrencyRatesAction,
 } from './currency-rates/reducer';
 import {
-  default as currencyConverterReducer, State as CurrencyConverterState,
+  default as currencyConverterReducer, State as CurrencyConverterState, Action as CurrencyConverterAction,
 } from './currency-converter/reducer';
 import { epics as currencyConverterEpics } from './currency-converter/epics';
 
@@ -15,6 +15,10 @@ export type RootState = {
   currencyRates: CurrencyRatesState;
   currencyConverter: CurrencyConverterState;
 };
+
+export type Action =
+  CurrencyRatesAction
+  | CurrencyConverterAction;
 
 const rootReducer = combineReducers<RootState>({
   currencyRates: currencyRatesReducer,
@@ -36,4 +40,4 @@ export const store = createStore(
   recoverState(),
   composeEnhancers(applyMiddleware(epicMiddleware)),
 );
-export type Store = { getState: () => RootState, dispatch: Function };
+export type LightStore = { getState: () => RootState, dispatch: Function };

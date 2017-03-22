@@ -1,18 +1,18 @@
-import { combineEpics } from 'redux-observable';
 import 'rxjs/add/operator/map';
+import { combineEpics, ActionsObservable } from 'redux-observable';
 
-import { Store } from '../index';
+import { LightStore } from '../index';
 import { ActionCreators, Action } from './reducer';
 import { convertValueWithBaseRateToTargetRate } from './utils';
 import * as CurrencyConverterSelectors from './selectors';
 import * as CurrencyRatesSelectors from '../currency-rates/selectors';
 
 // Epics - handling side effects of actions
-const changeCurrencyEpic = (action$: any, store: Store) =>
+const changeCurrencyEpic = (action$: ActionsObservable<Action>, store: LightStore) =>
   action$.ofType(
     ActionCreators.ChangeBaseCurrency.type,
     ActionCreators.ChangeTargetCurrency.type,
-  ).map((action: typeof ActionCreators.ChangeBaseCurrency) => ({
+  ).map((action: typeof ActionCreators.ChangeBaseCurrency): Action => ({
     type: ActionCreators.UpdateCurrencyConverterState.type,
     payload: {
       targetValue: convertValueWithBaseRateToTargetRate(
@@ -21,11 +21,11 @@ const changeCurrencyEpic = (action$: any, store: Store) =>
         CurrencyRatesSelectors.getTargetCurrencyRate(store.getState()),
       ),
     },
-  } as Action));
+  }));
 
-const changeBaseValueEpic = (action$: any, store: Store) =>
+const changeBaseValueEpic = (action$: any, store: LightStore) =>
   action$.ofType(ActionCreators.ChangeBaseValue.type)
-    .map((action: typeof ActionCreators.ChangeBaseValue) => ({
+    .map((action: typeof ActionCreators.ChangeBaseValue): Action => ({
       type: ActionCreators.UpdateCurrencyConverterState.type,
       payload: {
         targetValue: convertValueWithBaseRateToTargetRate(
@@ -34,11 +34,11 @@ const changeBaseValueEpic = (action$: any, store: Store) =>
           CurrencyRatesSelectors.getTargetCurrencyRate(store.getState()),
         ),
       },
-    } as Action));
+    }));
 
-const changeTargetValueEpic = (action$: any, store: Store) =>
+const changeTargetValueEpic = (action$: any, store: LightStore) =>
   action$.ofType(ActionCreators.ChangeTargetValue.type)
-    .map((action: typeof ActionCreators.ChangeTargetValue) => ({
+    .map((action: typeof ActionCreators.ChangeTargetValue): Action => ({
       type: ActionCreators.UpdateCurrencyConverterState.type,
       payload: {
         baseValue: convertValueWithBaseRateToTargetRate(
@@ -47,7 +47,7 @@ const changeTargetValueEpic = (action$: any, store: Store) =>
           CurrencyRatesSelectors.getBaseCurrencyRate(store.getState()),
         ),
       },
-    } as Action));
+    }));
 
 export const epics = combineEpics(
   changeCurrencyEpic, changeBaseValueEpic, changeTargetValueEpic,
