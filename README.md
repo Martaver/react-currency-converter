@@ -1,4 +1,5 @@
-# Currency Converter - Example React Component in TypeScript
+# Currency Converter - Example React App reusable as Component (built in TypeScript)
+> React App encapsulated as a module to be consumed with npm
 
 ### Demo: https://piotrwitek.github.io/react-currency-converter/
 
