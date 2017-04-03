@@ -40,4 +40,3 @@ export const store = createStore(
   recoverState(),
   composeEnhancers(applyMiddleware(epicMiddleware)),
 );
-export type LightStore = { getState: () => RootState, dispatch: Function };

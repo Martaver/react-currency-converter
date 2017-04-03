@@ -696,15 +696,9 @@ dateformat@^1.0.11:
     get-stdin "^4.0.1"
     meow "^3.3.0"
 
-debug@2.6.1:
+debug@2.6.1, debug@^2.1.1, debug@^2.2.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
-  dependencies:
-    ms "0.7.2"
-
-debug@^2.1.1, debug@^2.2.0:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:
     ms "0.7.2"
 
@@ -2548,9 +2542,9 @@ react-dom@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react-redux-typescript@^2.1.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-redux-typescript/-/react-redux-typescript-2.2.0.tgz#092cb2650e338c7f2a22b04303ab07772ef9e833"
+react-redux-typescript@^2.2.0:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-redux-typescript/-/react-redux-typescript-2.2.1.tgz#db8520b13f3b717a7a7283a05e0ffe4234796870"
 
 react-redux@^5.0.3:
   version "5.0.3"
@@ -3171,9 +3165,9 @@ type-is@~1.6.14:
     media-typer "0.3.0"
     mime-types "~2.1.13"
 
-typescript@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.2.1.tgz#4862b662b988a4c8ff691cc7969622d24db76ae9"
+typescript@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.2.2.tgz#606022508479b55ffa368b58fee963a03dfd7b0c"
 
 ua-parser-js@^0.7.9:
   version "0.7.12"

@@ -1,4 +1,5 @@
-import { ActionCreator } from '../action-creator';
+import { returntypeof } from 'react-redux-typescript';
+import { createActionCreator } from '../action-creator';
 
 import { latestResponse } from '../../services/fixer/fixtures';
 const INITIAL_BASE_CURRENCY = latestResponse.base;
@@ -6,15 +7,20 @@ const INITIAL_TARGET_CURRENCY = Object.entries(latestResponse.rates)[0][0];
 
 // Action Creators
 export const ActionCreators = {
-  ChangeBaseCurrency: new ActionCreator<'ChangeBaseCurrency', string>('ChangeBaseCurrency'),
-  ChangeTargetCurrency: new ActionCreator<'ChangeTargetCurrency', string>('ChangeTargetCurrency'),
-  ChangeBaseValue: new ActionCreator<'ChangeBaseValue', string>('ChangeBaseValue'),
-  ChangeTargetValue: new ActionCreator<'ChangeTargetValue', string>('ChangeTargetValue'),
-  UpdateCurrencyConverterState: new ActionCreator<'UpdateCurrencyConverterState', Partial<State>>('UpdateCurrencyConverterState'),
+  ChangeBaseCurrency: createActionCreator<'ChangeBaseCurrency', string>('ChangeBaseCurrency'),
+  ChangeTargetCurrency: createActionCreator<'ChangeTargetCurrency', string>('ChangeTargetCurrency'),
+  ChangeBaseValue: createActionCreator<'ChangeBaseValue', string>('ChangeBaseValue'),
+  ChangeTargetValue: createActionCreator<'ChangeTargetValue', string>('ChangeTargetValue'),
+  UpdateCurrencyConverterState: createActionCreator<'UpdateCurrencyConverterState', Partial<State>>('UpdateCurrencyConverterState'),
 };
 
-// Action Types
-export type Action = typeof ActionCreators[keyof typeof ActionCreators];
+// const Actions = {
+//   ChangeBaseCurrency: returntypeof(ActionCreators.ChangeBaseCurrency),
+//   ChangeBaseValue: returntypeof(ActionCreators.ChangeBaseValue),
+// };
+
+const Actions = Object.values(ActionCreators).map(returntypeof);
+export type Action = typeof Actions[number];
 
 // State
 export type State = {

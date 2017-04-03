@@ -20,7 +20,7 @@
     "emitDecoratorMetadata": true,
     "preserveConstEnums": true,
     "pretty": true,
-    "declaration": true,
+    "declaration": false,
     "removeComments": true,
     "sourceMap": true,
     "strictNullChecks": true,
