@@ -10,8 +10,6 @@
     "noImplicitThis": true,
     "noImplicitReturns": true,
     "noResolve": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
     "noEmit": false,
     "noEmitOnError": true,
     "noEmitHelpers": true,

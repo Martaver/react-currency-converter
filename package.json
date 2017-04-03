@@ -1,7 +1,7 @@
 {
   "name": "react-currency-converter",
   "version": "0.7.0",
-  "description": "Currency Converter - Example React Component in TypeScript",
+  "description": "Currency Converter - Example React App reusable as Component (built in TypeScript)",
   "main": "lib/app.jsx",
   "author": "Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io/)",
   "homepage": "https://github.com/piotrwitek/react-currency-converter",
