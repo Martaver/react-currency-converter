@@ -2,42 +2,59 @@ import 'rxjs/add/operator/map';
 import { combineEpics, Epic } from 'redux-observable';
 // import { returntypeof } from 'react-redux-typescript';
 
-import { RootState } from '../index';
-import { ActionCreators, Action } from './reducer';
+import { RootState, Action } from '../index';
+import { actionCreators } from './reducer';
 import { convertValueWithBaseRateToTargetRate } from './utils';
-import * as CurrencyConverterSelectors from './selectors';
-import * as CurrencyRatesSelectors from '../currency-rates/selectors';
+import * as currencyConverterSelectors from './selectors';
+import * as currencyRatesSelectors from '../currency-rates/selectors';
+// type Action =
+//   { type: 'changeBaseCurrency'; payload: string; } |
+//   { type: 'changeTargetCurrency'; payload: string; } |
+//   { type: 'changeBaseValue'; payload: string; } |
+//   { type: 'changeTargetValue'; payload: number; };
+
+// function ofType<A extends { type: T }, T extends string, K extends T>(
+//   obj: A, key: K,
+// ): obj is A[] {
+//   return obj && obj.type === key;
+// }
+// const testObj: Action = {} as any;
+// if (ofType(testObj, 'changeBaseCurrency')) {
+//   // TypeScript know that testObj has the property name
+//   console.log(testObj.type);
+// }
 
 // Epics - handling side effects of actions
 const changeCurrencyEpic: Epic<Action, RootState> = (action$, store) =>
   action$.ofType(
-    ActionCreators.ChangeBaseCurrency.type,
-    ActionCreators.ChangeTargetCurrency.type,
-  ).map((action): Action => ActionCreators.UpdateCurrencyConverterState({
+    actionCreators.changeBaseCurrency.type,
+    actionCreators.changeTargetCurrency.type,
+  ).map((action: any): Action => actionCreators.updateCurrencyConverterState({
     targetValue: convertValueWithBaseRateToTargetRate(
-      CurrencyConverterSelectors.getBaseValue(store.getState()),
-      CurrencyRatesSelectors.getBaseCurrencyRate(store.getState()),
-      CurrencyRatesSelectors.getTargetCurrencyRate(store.getState()),
+      currencyConverterSelectors.getBaseValue(store.getState()),
+      currencyRatesSelectors.getBaseCurrencyRate(store.getState()),
+      currencyRatesSelectors.getTargetCurrencyRate(store.getState()),
     ),
   }));
 
+// TODO: ofType should return limited types Record
 const changeBaseValueEpic: Epic<Action, RootState> = (action$, store) =>
-  action$.ofType(ActionCreators.ChangeBaseValue.type)
-    .map((action): Action => ActionCreators.UpdateCurrencyConverterState({
+  action$.ofType(actionCreators.changeBaseValue.type)
+    .map((action: any): Action => actionCreators.updateCurrencyConverterState({
       targetValue: convertValueWithBaseRateToTargetRate(
         action.payload,
-        CurrencyRatesSelectors.getBaseCurrencyRate(store.getState()),
-        CurrencyRatesSelectors.getTargetCurrencyRate(store.getState()),
+        currencyRatesSelectors.getBaseCurrencyRate(store.getState()),
+        currencyRatesSelectors.getTargetCurrencyRate(store.getState()),
       ),
     }));
 
 const changeTargetValueEpic: Epic<Action, RootState> = (action$, store) =>
-  action$.ofType(ActionCreators.ChangeTargetValue.type)
-    .map((action): Action => ActionCreators.UpdateCurrencyConverterState({
+  action$.ofType(actionCreators.changeTargetValue.type)
+    .map((action: any): Action => actionCreators.updateCurrencyConverterState({
       baseValue: convertValueWithBaseRateToTargetRate(
         action.payload,
-        CurrencyRatesSelectors.getTargetCurrencyRate(store.getState()),
-        CurrencyRatesSelectors.getBaseCurrencyRate(store.getState()),
+        currencyRatesSelectors.getTargetCurrencyRate(store.getState()),
+        currencyRatesSelectors.getBaseCurrencyRate(store.getState()),
       ),
     }));
 

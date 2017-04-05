@@ -1,16 +1,11 @@
 // MOCKING
-jest.mock('redux-actions', () => {
+jest.mock('../index', () => {
   return {
-    handleActions: () => ({}),
-  };
-}, { virtual: true });
-jest.mock('seamless-immutable', () => {
-  return {
-    from: () => ({}),
+    Action: () => ({}),
   };
 }, { virtual: true });
 
-import * as currencyRatesActions from '../reducer';
+import { actionCreators } from '../reducer';
 
 // testing action creators
 
@@ -27,7 +22,7 @@ test('testing action creator currencyRatesFetchSuccess', () => {
   // tslint:enable
 
   // act
-  const actual = currencyRatesActions.loadCurrencyRatesSuccess(results);
+  const actual = actionCreators.loadCurrencyRatesSuccess(results);
   const expected = {
     type: 'currencyRates/LOAD_CURRENCY_RATES_SUCCESS',
     payload: results,
@@ -42,7 +37,7 @@ test('testing action creator currencyRatesFetchError', () => {
   const errorMessage = 'Error Message';
 
   // act
-  const actual = currencyRatesActions.loadCurrencyRatesError(errorMessage);
+  const actual = actionCreators.loadCurrencyRatesError(errorMessage);
   const expected = {
     type: 'currencyRates/LOAD_CURRENCY_RATES_ERROR',
     payload: errorMessage,

@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-export interface Props {
-  currencies: string[];
-  value: string;
-  onChange: (newValue: string) => void;
-}
+type Props = {
+  currencies: string[],
+  value: string,
+  onChange: (newValue: string) => void,
+};
 
 export function CurrencySelect({ currencies = [], value, onChange }: Props) {
   const handleChange = (ev: React.ChangeEvent<HTMLSelectElement>) => {

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { CurrencySelect } from './currency-select';
 import { CurrencyInput } from './currency-input';
 
-interface Props {
+type Props = {
   currencies: string[];
   baseCurrency: string;
   targetCurrency: string;
@@ -14,10 +14,8 @@ interface Props {
   onTargetCurrencyChange: (payload: string) => void;
   onBaseValueChange: (payload: string) => void;
   onTargetValueChange: (payload: string) => void;
-}
-
-interface State {
-}
+};
+type State = {};
 
 export class CurrencyConverter extends React.Component<Props, State> {
   render(): JSX.Element {

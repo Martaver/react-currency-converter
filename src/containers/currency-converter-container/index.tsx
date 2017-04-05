@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import { returntypeof } from 'react-redux-typescript';
 
 import { RootState } from '../../store';
-import { ActionCreators } from '../../store/currency-converter/reducer';
-import * as CurrencyRatesSelectors from '../../store/currency-rates/selectors';
+import { actionCreators } from '../../store/currency-converter/reducer';
+import * as currencyRatesSelectors from '../../store/currency-rates/selectors';
 import { CurrencyConverter } from './components/currency-converter';
 
 const mapStateToProps = (state: RootState) => ({
-  currencies: CurrencyRatesSelectors.getCurrencies(state),
+  currencies: currencyRatesSelectors.getCurrencies(state),
   currencyConverter: state.currencyConverter,
 });
 const dispatchToProps = {
-  changeBaseCurrency: ActionCreators.ChangeBaseCurrency.create,
-  changeTargetCurrency: ActionCreators.ChangeTargetCurrency.create,
-  changeBaseValue: ActionCreators.ChangeBaseValue.create,
-  changeTargetValue: ActionCreators.ChangeTargetValue.create,
+  changeBaseCurrency: actionCreators.changeBaseCurrency,
+  changeTargetCurrency: actionCreators.changeTargetCurrency,
+  changeBaseValue: actionCreators.changeBaseValue,
+  changeTargetValue: actionCreators.changeTargetValue,
 };
 
 const stateProps = returntypeof(mapStateToProps);

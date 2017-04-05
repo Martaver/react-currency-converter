@@ -1,12 +1,11 @@
 import * as React from 'react';
 
-export interface Props {
-  value: string;
-  onChange: (newValue: string) => void;
-}
+type Props = {
+  value: string,
+  onChange: (newValue: string) => void,
+};
 
 export function CurrencyInput({ value = 0, onChange }: Props) {
-
   const handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     onChange(ev.currentTarget.value);
   };

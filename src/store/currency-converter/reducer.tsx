@@ -1,26 +1,18 @@
-import { returntypeof } from 'react-redux-typescript';
 import { createActionCreator } from '../action-creator';
 
+import { Action } from '../index';
 import { latestResponse } from '../../services/fixer/fixtures';
 const INITIAL_BASE_CURRENCY = latestResponse.base;
 const INITIAL_TARGET_CURRENCY = Object.entries(latestResponse.rates)[0][0];
 
 // Action Creators
-export const ActionCreators = {
-  ChangeBaseCurrency: createActionCreator<'ChangeBaseCurrency', string>('ChangeBaseCurrency'),
-  ChangeTargetCurrency: createActionCreator<'ChangeTargetCurrency', string>('ChangeTargetCurrency'),
-  ChangeBaseValue: createActionCreator<'ChangeBaseValue', string>('ChangeBaseValue'),
-  ChangeTargetValue: createActionCreator<'ChangeTargetValue', string>('ChangeTargetValue'),
-  UpdateCurrencyConverterState: createActionCreator<'UpdateCurrencyConverterState', Partial<State>>('UpdateCurrencyConverterState'),
+export const actionCreators = {
+  changeBaseCurrency: createActionCreator('changeBaseCurrency', (p: string) => p),
+  changeTargetCurrency: createActionCreator('changeTargetCurrency', (p: string) => p),
+  changeBaseValue: createActionCreator('changeBaseValue', (p: string) => p),
+  changeTargetValue: createActionCreator('changeTargetValue', (p: string) => p),
+  updateCurrencyConverterState: createActionCreator('updateCurrencyConverterState', (p: Partial<State>) => p),
 };
-
-// const Actions = {
-//   ChangeBaseCurrency: returntypeof(ActionCreators.ChangeBaseCurrency),
-//   ChangeBaseValue: returntypeof(ActionCreators.ChangeBaseValue),
-// };
-
-const Actions = Object.values(ActionCreators).map(returntypeof);
-export type Action = typeof Actions[number];
 
 // State
 export type State = {
@@ -40,19 +32,19 @@ export const initialState: State = {
 export default function reducer(state: State = initialState, action: Action): State {
   let partialState: Partial<State> | undefined;
 
-  if (action.type === ActionCreators.ChangeBaseCurrency.type) {
+  if (action.type === actionCreators.changeBaseCurrency.type) {
     partialState = { baseCurrency: action.payload };
   }
-  if (action.type === ActionCreators.ChangeTargetCurrency.type) {
+  if (action.type === actionCreators.changeTargetCurrency.type) {
     partialState = { targetCurrency: action.payload };
   }
-  if (action.type === ActionCreators.ChangeBaseValue.type) {
+  if (action.type === actionCreators.changeBaseValue.type) {
     partialState = { baseValue: action.payload };
   }
-  if (action.type === ActionCreators.ChangeTargetValue.type) {
+  if (action.type === actionCreators.changeTargetValue.type) {
     partialState = { targetValue: action.payload };
   }
-  if (action.type === ActionCreators.UpdateCurrencyConverterState.type) {
+  if (action.type === actionCreators.updateCurrencyConverterState.type) {
     partialState = action.payload;
   }
 

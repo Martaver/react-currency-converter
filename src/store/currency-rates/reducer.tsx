@@ -1,32 +1,25 @@
-import { returntypeof } from 'react-redux-typescript';
-
+import { Action } from '../index';
 import { latestResponse } from '../../services/fixer/fixtures';
 
-// Action Creators
-export const LOAD_CURRENCY_RATES = 'currencyRates/LOAD_CURRENCY_RATES';
-export const loadCurrencyRates = () => ({
-  type: LOAD_CURRENCY_RATES as typeof LOAD_CURRENCY_RATES,
-});
-
-export const LOAD_CURRENCY_RATES_SUCCESS = 'currencyRates/LOAD_CURRENCY_RATES_SUCCESS';
-export const loadCurrencyRatesSuccess = (payload: IFixerServiceResponse) => ({
-  type: LOAD_CURRENCY_RATES_SUCCESS as typeof LOAD_CURRENCY_RATES_SUCCESS,
-  payload,
-});
-
-export const LOAD_CURRENCY_RATES_ERROR = 'currencyRates/LOAD_CURRENCY_RATES_ERROR';
-export const loadCurrencyRatesError = (payload: string) => ({
-  type: LOAD_CURRENCY_RATES_ERROR as typeof LOAD_CURRENCY_RATES_ERROR,
-  payload,
-});
-
 // Action Types
-export const ActionTypes = {
-  loadCurrencyRates: returntypeof(loadCurrencyRates),
-  loadCurrencyRatesSuccess: returntypeof(loadCurrencyRatesSuccess),
-  loadCurrencyRatesError: returntypeof(loadCurrencyRatesError),
+export const LOAD_CURRENCY_RATES = 'currencyRates/LOAD_CURRENCY_RATES';
+export const LOAD_CURRENCY_RATES_SUCCESS = 'currencyRates/LOAD_CURRENCY_RATES_SUCCESS';
+export const LOAD_CURRENCY_RATES_ERROR = 'currencyRates/LOAD_CURRENCY_RATES_ERROR';
+
+// Action Creators
+export const actionCreators = {
+  loadCurrencyRates: () => ({
+    type: LOAD_CURRENCY_RATES as typeof LOAD_CURRENCY_RATES,
+  }),
+  loadCurrencyRatesSuccess: (payload: IFixerServiceResponse) => ({
+    type: LOAD_CURRENCY_RATES_SUCCESS as typeof LOAD_CURRENCY_RATES_SUCCESS,
+    payload,
+  }),
+  loadCurrencyRatesError: (payload: string) => ({
+    type: LOAD_CURRENCY_RATES_ERROR as typeof LOAD_CURRENCY_RATES_ERROR,
+    payload,
+  }),
 };
-export type Action = typeof ActionTypes[keyof typeof ActionTypes];
 
 // State
 export type State = {

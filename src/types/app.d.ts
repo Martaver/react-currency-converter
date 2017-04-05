@@ -3,7 +3,7 @@ export type ThunkAction = (dispatch: DispatchFunction, getState: () => GetStateF
 export type DispatchFunction = (action: Action | ThunkAction) => any;
 export type GetStateFunction = () => object;
 
-type PayloadAction<Payload> = {
+export type PayloadAction<Payload> = {
   type: string;
   payload: Payload;
   error?: boolean;
