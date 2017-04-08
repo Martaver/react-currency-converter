@@ -24,8 +24,7 @@ const actionCreators = {
   ...currencyRatesActionCreators,
   ...currencyConverterActionCreators,
 };
-// TODO: reduce - actions should be dictionary [T]: Action<T, P>
-const actions = (Object.values(actionCreators).map(returntypeof));
+const actions = Object.values(actionCreators).map(returntypeof);
 export type Action = typeof actions[number];
 
 const rootReducer = combineReducers<RootState>({
