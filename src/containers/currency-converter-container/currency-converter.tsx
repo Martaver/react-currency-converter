@@ -1,23 +1,20 @@
-// lib imports
 import * as React from 'react';
 
-import { CurrencySelect } from './currency-select';
-import { CurrencyInput } from './currency-input';
+import { Input, Select } from '../../components';
 
 type Props = {
-  currencies: string[];
-  baseCurrency: string;
-  targetCurrency: string;
-  baseValue: string;
-  targetValue: string;
-  onBaseCurrencyChange: (payload: string) => void;
-  onTargetCurrencyChange: (payload: string) => void;
-  onBaseValueChange: (payload: string) => void;
-  onTargetValueChange: (payload: string) => void;
+  currencies: string[],
+  baseCurrency: string,
+  targetCurrency: string,
+  baseValue: string,
+  targetValue: string,
+  onBaseCurrencyChange: (payload: string) => void,
+  onTargetCurrencyChange: (payload: string) => void,
+  onBaseValueChange: (payload: string) => void,
+  onTargetValueChange: (payload: string) => void,
 };
-type State = {};
 
-export class CurrencyConverter extends React.Component<Props, State> {
+export class CurrencyConverter extends React.Component<Props, {}> {
   render(): JSX.Element {
     const {
       currencies,
@@ -59,26 +56,26 @@ export class CurrencyConverter extends React.Component<Props, State> {
   }
 }
 
-interface ICurrencyInputGroup {
-  currencies: string[];
-  currencyType: string;
-  currencyValue: string;
-  onCurrencyTypeChange: (payload: string) => void;
-  onCurrencyValueChange: (payload: string) => void;
-}
+type CurrencyInputGroupProps = {
+  currencies: string[],
+  currencyType: string,
+  currencyValue: string,
+  onCurrencyTypeChange: (payload: string) => void,
+  onCurrencyValueChange: (payload: string) => void,
+};
 function CurrencyInputGroup({ currencies, currencyType, currencyValue,
-  onCurrencyTypeChange, onCurrencyValueChange }: ICurrencyInputGroup) {
+  onCurrencyTypeChange, onCurrencyValueChange }: CurrencyInputGroupProps) {
   return (
     <div className="c-input-group">
       <div className="o-field o-field--fixed" style={{ width: '90px' }}>
-        <CurrencySelect
-          currencies={currencies}
+        <Select
+          options={currencies}
           value={currencyType}
           onChange={onCurrencyTypeChange}
         />
       </div>
       <div className="o-field">
-        <CurrencyInput
+        <Input
           value={currencyValue}
           onChange={onCurrencyValueChange}
         />

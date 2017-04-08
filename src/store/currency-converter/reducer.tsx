@@ -1,9 +1,11 @@
 import { createActionCreator } from '../action-creator';
-
 import { Action } from '../index';
-import { latestResponse } from '../../services/fixer/fixtures';
-const INITIAL_BASE_CURRENCY = latestResponse.base;
-const INITIAL_TARGET_CURRENCY = Object.entries(latestResponse.rates)[0][0];
+import Cache from '../../services/fixer/cache';
+
+const INITIAL_BASE_CURRENCY = Cache.latest.base;
+const INITIAL_TARGET_CURRENCY = Object.keys(Cache.latest.rates)[0];
+const INITIAL_BASE_VALUE = 100;
+const INITIAL_TARGET_VALUE = (Cache.latest.rates[INITIAL_TARGET_CURRENCY] * INITIAL_BASE_VALUE);
 
 // Action Creators
 export const actionCreators = {
@@ -16,16 +18,16 @@ export const actionCreators = {
 
 // State
 export type State = {
-  readonly baseCurrency: string;
-  readonly targetCurrency: string;
+  readonly selectedBase: string;
+  readonly selectedTarget: string;
   readonly baseValue: string;
   readonly targetValue: string;
 };
 export const initialState: State = {
-  baseCurrency: INITIAL_BASE_CURRENCY,
-  targetCurrency: INITIAL_TARGET_CURRENCY,
-  baseValue: '100',
-  targetValue: (latestResponse.rates[INITIAL_TARGET_CURRENCY] * 100).toString(),
+  selectedBase: INITIAL_BASE_CURRENCY,
+  selectedTarget: INITIAL_TARGET_CURRENCY,
+  baseValue: INITIAL_BASE_VALUE.toString(),
+  targetValue: INITIAL_TARGET_VALUE.toString(),
 };
 
 // Reducer
@@ -33,10 +35,10 @@ export default function reducer(state: State = initialState, action: Action): St
   let partialState: Partial<State> | undefined;
 
   if (action.type === actionCreators.changeBaseCurrency.type) {
-    partialState = { baseCurrency: action.payload };
+    partialState = { selectedBase: action.payload };
   }
   if (action.type === actionCreators.changeTargetCurrency.type) {
-    partialState = { targetCurrency: action.payload };
+    partialState = { selectedTarget: action.payload };
   }
   if (action.type === actionCreators.changeBaseValue.type) {
     partialState = { baseValue: action.payload };

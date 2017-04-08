@@ -1,5 +1,5 @@
 import Accounting from 'accounting';
 
-export function formatMoney(value: string) {
+export function formatAsMoney(value: string): string {
   return Accounting.formatMoney(value, '');
 }

@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import { validateStatusCode, logRejection } from '../../utils/index';
+import { isResponseStatusOk, logError, logDebug } from '../../utils/index';
 
 // Get the latest foreign exchange reference rates in JSON format.
 const FIXER_API_URL = 'https://api.fixer.io/';
@@ -13,11 +13,15 @@ export async function getLatest(baseCurrency?: string):
   }
 
   try {
-    let response = await fetch(fixerLatestRates);
-    validateStatusCode(response);
-    return response.json();
+    const response = await fetch(fixerLatestRates);
+    if (isResponseStatusOk(response)) {
+      return response.json();
+    } else {
+      logDebug(response.body);
+      return;
+    }
   } catch (err) {
-    logRejection(err);
+    logError(err);
     return;
   }
 }
@@ -31,11 +35,15 @@ export async function getByDate(date: Date, baseCurrency?: string):
   }
 
   try {
-    let response = await fetch(fixerRatesByDate);
-    validateStatusCode(response);
-    return response.json();
+    const response = await fetch(fixerRatesByDate);
+    if (isResponseStatusOk(response)) {
+      return response.json();
+    } else {
+      logDebug(response.body);
+      return;
+    }
   } catch (err) {
-    logRejection(err);
+    logError(err);
     return;
   }
 }

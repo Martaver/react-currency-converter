@@ -14,7 +14,7 @@
     "dev": "ts-node -P scripts/ scripts/dev.ts",
     "dist": "ts-node -P scripts scripts/dist.ts",
     "lib": "rm -rf lib && tsc --project src/ -t 'es5' -m 'commonjs'",
-    "lint": "tslint --project src/",
+    "lint": "tslint --project src/tsconfig.json",
     "tsc": "tsc --project src/ --noEmit",
     "tsc:watch": "tsc --project src/ --noEmit -w",
     "test": "jest --config jest.json",

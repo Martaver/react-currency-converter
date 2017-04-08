@@ -13,13 +13,9 @@ export function isNotValidCurrency(value: string) {
   if (parts.length > 2) { return true; }
 
   const decimal = parts[1];
-  return decimal && decimal.length > 2;
+  return !!decimal && decimal.length > 2;
 }
 
-export function validateStatusCode(response: Response) {
-  if (response.status >= 200 && response.status < 300) {
-    return true;
-  } else {
-    throw new Error(response.statusText);
-  }
+export function isResponseStatusOk(response: Response) {
+  return (response.status >= 200 && response.status < 300);
 }

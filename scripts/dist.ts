@@ -5,8 +5,8 @@ import { FuseBox, UglifyJSPlugin, EnvPlugin } from 'fuse-box';
 const BUILD_PATH = 'dist/';
 
 // dependencies
-const dependencyExceptions = ['rxjs'];
 const packageJson = require('../package.json');
+const dependencyExceptions = ['rxjs'];
 const prodDependencies = Object.keys(packageJson.dependencies)
   .filter(moduleName => !dependencyExceptions.includes(moduleName));
 

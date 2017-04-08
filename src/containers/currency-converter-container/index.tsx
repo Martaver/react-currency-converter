@@ -5,7 +5,7 @@ import { returntypeof } from 'react-redux-typescript';
 import { RootState } from '../../store';
 import { actionCreators } from '../../store/currency-converter/reducer';
 import * as currencyRatesSelectors from '../../store/currency-rates/selectors';
-import { CurrencyConverter } from './components/currency-converter';
+import { CurrencyConverter } from './currency-converter';
 
 const mapStateToProps = (state: RootState) => ({
   currencies: currencyRatesSelectors.getCurrencies(state),
@@ -13,8 +13,8 @@ const mapStateToProps = (state: RootState) => ({
 });
 const dispatchToProps = {
   changeBaseCurrency: actionCreators.changeBaseCurrency,
-  changeTargetCurrency: actionCreators.changeTargetCurrency,
   changeBaseValue: actionCreators.changeBaseValue,
+  changeTargetCurrency: actionCreators.changeTargetCurrency,
   changeTargetValue: actionCreators.changeTargetValue,
 };
 
@@ -25,7 +25,7 @@ type State = {};
 class CurrencyConverterContainer extends React.Component<Props, State> {
   render() {
     const {
-      baseCurrency, targetCurrency, baseValue, targetValue,
+      selectedBase, selectedTarget, baseValue, targetValue,
     } = this.props.currencyConverter;
     const {
       currencies, changeBaseCurrency, changeBaseValue, changeTargetCurrency, changeTargetValue,
@@ -37,20 +37,25 @@ class CurrencyConverterContainer extends React.Component<Props, State> {
 
         <section className="u-centered">
           <p>
-            Example application to showcase TypeScript patterns used in React & Redux projects.
+            Example application teaching how to correctly use TypeScript in React & Redux projects.
           </p>
           <p>
-            To learn more about usefull TypeScript Patterns in React & Redux Apps go here:<br />
-            <a href="https://github.com/piotrwitek/react-redux-typescript-patterns/">React / Redux / TypeScript Patterns</a>
+            To learn more about TypeScript Guidelines & Patterns
+             to help you build bug-free React & Redux Apps, check here:<br />
+            <a
+              href="https://github.com/piotrwitek/react-redux-typescript-patterns/"
+            >React / Redux / TypeScript Patterns</a>
           </p>
           <p>
-            Async Flows are handled using <a href="https://github.com/redux-observable/redux-observable/">redux-observable</a>
+            Async Flows are handled using <a
+              href="https://github.com/redux-observable/redux-observable/"
+            >redux-observable</a>
           </p>
         </section>
 
         <section className="u-letter-box--xlarge">
           <CurrencyConverter currencies={currencies}
-            baseCurrency={baseCurrency} targetCurrency={targetCurrency}
+            baseCurrency={selectedBase} targetCurrency={selectedTarget}
             baseValue={baseValue} targetValue={targetValue}
             onBaseCurrencyChange={changeBaseCurrency}
             onTargetCurrencyChange={changeTargetCurrency}

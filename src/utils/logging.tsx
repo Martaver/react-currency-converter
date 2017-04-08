@@ -1,7 +1,8 @@
-export function logToConsole(...restParams: any[]) {
-  console.log('>>> LOGGER:', ...restParams);
+export function logDebug(...restParams: any[]) {
+  // tslint:disable-next-line:no-console
+  console.debug('[DEBUG]:', ...restParams);
 }
 
-export function logRejection(err: Error) {
-  console.log('Request Failed:', err);
+export function logError(err: Error) {
+  console.error('[ERROR]:', err);
 }
