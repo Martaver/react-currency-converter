@@ -1,4 +1,5 @@
-export const latestJson = `{
+export const cachedResponse: IFixerServiceResponse = JSON.parse(`
+{
     "base": "EUR",
     "date": "2017-02-17",
     "rates": {
@@ -34,5 +35,5 @@ export const latestJson = `{
         "USD": 1.065,
         "ZAR": 13.936
     }
-}`;
-export const latestResponse: IFixerServiceResponse = JSON.parse(latestJson);
+}
+`);

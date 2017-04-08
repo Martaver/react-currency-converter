@@ -1,11 +1,11 @@
 import { createActionCreator } from '../action-creator';
 import { Action } from '../index';
-import Cache from '../../services/fixer/cache';
+import { cachedResponse } from '../../services/fixer/fixtures';
 
-const INITIAL_BASE_CURRENCY = Cache.latest.base;
-const INITIAL_TARGET_CURRENCY = Object.keys(Cache.latest.rates)[0];
+const INITIAL_BASE_CURRENCY = cachedResponse.base;
+const INITIAL_TARGET_CURRENCY = Object.keys(cachedResponse.rates)[0];
 const INITIAL_BASE_VALUE = 100;
-const INITIAL_TARGET_VALUE = (Cache.latest.rates[INITIAL_TARGET_CURRENCY] * INITIAL_BASE_VALUE);
+const INITIAL_TARGET_VALUE = (cachedResponse.rates[INITIAL_TARGET_CURRENCY] * INITIAL_BASE_VALUE);
 
 // Action Creators
 export const actionCreators = {
@@ -17,13 +17,13 @@ export const actionCreators = {
 };
 
 // State
-export type State = {
-  readonly selectedBase: string;
-  readonly selectedTarget: string;
-  readonly baseValue: string;
-  readonly targetValue: string;
-};
-export const initialState: State = {
+export type State = Readonly<{
+  selectedBase: string,
+  selectedTarget: string,
+  baseValue: string,
+  targetValue: string,
+}>;
+const initialState: State = {
   selectedBase: INITIAL_BASE_CURRENCY,
   selectedTarget: INITIAL_TARGET_CURRENCY,
   baseValue: INITIAL_BASE_VALUE.toString(),
@@ -31,7 +31,7 @@ export const initialState: State = {
 };
 
 // Reducer
-export default function reducer(state: State = initialState, action: Action): State {
+export const reducer = (state: State = initialState, action: Action): State => {
   let partialState: Partial<State> | undefined;
 
   if (action.type === actionCreators.changeBaseCurrency.type) {
@@ -51,4 +51,4 @@ export default function reducer(state: State = initialState, action: Action): St
   }
 
   return partialState != null ? { ...state, ...partialState } : state;
-}
+};

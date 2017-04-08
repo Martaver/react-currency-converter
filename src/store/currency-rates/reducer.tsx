@@ -1,5 +1,5 @@
 import { Action } from '../index';
-import { latestResponse } from '../../services/fixer/fixtures';
+import { cachedResponse } from '../../services/fixer/fixtures';
 
 // Action Types
 export const LOAD_CURRENCY_RATES = 'currencyRates/LOAD_CURRENCY_RATES';
@@ -22,25 +22,25 @@ export const actionCreators = {
 };
 
 // State
-export type State = {
-  readonly isLoading: boolean;
-  readonly error: string | null;
-  readonly lastUpdated: number | null;
-  readonly base: string;
-  readonly rates: { [key: string]: number };
-  readonly date: string;
-};
-export const initialState: State = {
+export type State = Readonly<{
+  isLoading: boolean,
+  error: string | null,
+  lastUpdated: number | null,
+  base: string,
+  rates: { [key: string]: number },
+  date: string,
+}>;
+const initialState: State = {
   isLoading: false,
   error: null,
   lastUpdated: null,
-  base: latestResponse.base,
-  rates: latestResponse.rates,
-  date: latestResponse.date,
+  base: cachedResponse.base,
+  rates: cachedResponse.rates,
+  date: cachedResponse.date,
 };
 
 // Reducer
-export default function reducer(state: State = initialState, action: Action): State {
+export const reducer = (state: State = initialState, action: Action): State => {
   let partialState: Partial<State> | undefined;
 
   switch (action.type) {
@@ -65,4 +65,4 @@ export default function reducer(state: State = initialState, action: Action): St
   }
 
   return { ...state, ...partialState };
-}
+};

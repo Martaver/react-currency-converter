@@ -1,3 +1,4 @@
+// tslint:disable-next-line:no-import-side-effect
 import './index';
 
 import { setStatefulModules } from 'fuse-box/modules/fuse-hmr';

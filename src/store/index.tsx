@@ -5,11 +5,11 @@ import { combineEpics, createEpicMiddleware } from 'redux-observable';
 declare const window: Window & { devToolsExtension: any, __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any };
 
 import {
-  default as currencyRatesReducer, State as CurrencyRatesState,
+  reducer as currencyRatesReducer, State as CurrencyRatesState,
   actionCreators as currencyRatesActionCreators,
 } from './currency-rates/reducer';
 import {
-  default as currencyConverterReducer, State as CurrencyConverterState,
+  reducer as currencyConverterReducer, State as CurrencyConverterState,
   actionCreators as currencyConverterActionCreators,
 } from './currency-converter/reducer';
 import { epics as currencyConverterEpics } from './currency-converter/epics';

@@ -10,5 +10,6 @@ export function convertValueWithBaseRateToTargetRate(
 ) {
   const numberValue = parseFloat(value);
   const result = (numberValue / baseRate) * targetRate;
+  // tslint:disable-next-line:no-magic-numbers
   return result.toFixed(2);
 }

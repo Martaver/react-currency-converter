@@ -11,7 +11,7 @@ const mapStateToProps = (state: RootState) => ({
   currencies: currencyRatesSelectors.getCurrencies(state),
   currencyConverter: state.currencyConverter,
 });
-const dispatchToProps = {
+const dispatchProps = {
   changeBaseCurrency: actionCreators.changeBaseCurrency,
   changeBaseValue: actionCreators.changeBaseValue,
   changeTargetCurrency: actionCreators.changeTargetCurrency,
@@ -19,10 +19,9 @@ const dispatchToProps = {
 };
 
 const stateProps = returntypeof(mapStateToProps);
-type Props = typeof stateProps & typeof dispatchToProps;
-type State = {};
+type Props = typeof stateProps & typeof dispatchProps;
 
-class CurrencyConverterContainer extends React.Component<Props, State> {
+class CurrencyConverterContainer extends React.Component<Props, {}> {
   render() {
     const {
       selectedBase, selectedTarget, baseValue, targetValue,
@@ -68,5 +67,5 @@ class CurrencyConverterContainer extends React.Component<Props, State> {
   }
 }
 
-const decorator = connect(mapStateToProps, dispatchToProps);
-export default decorator(CurrencyConverterContainer);
+// tslint:disable-next-line:no-default-export
+export default connect(mapStateToProps, dispatchProps)(CurrencyConverterContainer);
