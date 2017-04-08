@@ -1,4 +1,5 @@
 {
+  // TypeScript-specific
   "rules": {
     "align": [
       true,
@@ -11,13 +12,13 @@
       true,
       "check-space"
     ],
-    "curly": false,
+    "curly": true,
     "eofline": true,
-    "forin": true,
     "indent": [
       true,
       "spaces"
     ],
+    "forin": true,
     "interface-name": [
       false
     ],
@@ -37,12 +38,7 @@
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
+      true
     ],
     "no-construct": true,
     "no-debugger": true,
