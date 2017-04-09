@@ -24,7 +24,7 @@ type Props = typeof stateProps & typeof dispatchProps;
 class CurrencyConverterContainer extends React.Component<Props, {}> {
   render() {
     const {
-      selectedBase, selectedTarget, baseValue, targetValue,
+      baseCurrency, targetCurrency, baseValue, targetValue,
     } = this.props.currencyConverter;
     const {
       currencies, changeBaseCurrency, changeBaseValue, changeTargetCurrency, changeTargetValue,
@@ -54,7 +54,7 @@ class CurrencyConverterContainer extends React.Component<Props, {}> {
 
         <section className="u-letter-box--xlarge">
           <CurrencyConverter currencies={currencies}
-            baseCurrency={selectedBase} targetCurrency={selectedTarget}
+            baseCurrency={baseCurrency} targetCurrency={targetCurrency}
             baseValue={baseValue} targetValue={targetValue}
             onBaseCurrencyChange={changeBaseCurrency}
             onTargetCurrencyChange={changeTargetCurrency}

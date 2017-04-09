@@ -1,10 +1,11 @@
-import { Action } from '../index';
 import { cachedResponse } from '../../services/fixer/fixtures';
 
+import { Action } from '../index';
+
 // Action Types
-export const LOAD_CURRENCY_RATES = 'currencyRates/LOAD_CURRENCY_RATES';
-export const LOAD_CURRENCY_RATES_SUCCESS = 'currencyRates/LOAD_CURRENCY_RATES_SUCCESS';
-export const LOAD_CURRENCY_RATES_ERROR = 'currencyRates/LOAD_CURRENCY_RATES_ERROR';
+export const LOAD_CURRENCY_RATES = 'LOAD_CURRENCY_RATES';
+export const LOAD_CURRENCY_RATES_SUCCESS = 'LOAD_CURRENCY_RATES_SUCCESS';
+export const LOAD_CURRENCY_RATES_ERROR = 'LOAD_CURRENCY_RATES_ERROR';
 
 // Action Creators
 export const actionCreators = {

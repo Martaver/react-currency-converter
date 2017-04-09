@@ -14,7 +14,7 @@ export const getCurrencies = createSelector(
 export const getBaseCurrencyRate = createSelector(
   getCurrencyConverter, getCurrencyRates,
   (currencyConverter, currencyRates) => {
-    const selectedBase = currencyConverter.selectedBase;
+    const selectedBase = currencyConverter.baseCurrency;
     return selectedBase === currencyRates.base
       ? 1 : currencyRates.rates[selectedBase];
   },
@@ -23,6 +23,6 @@ export const getBaseCurrencyRate = createSelector(
 export const getTargetCurrencyRate = createSelector(
   getCurrencyConverter, getCurrencyRates,
   (currencyConverter, currencyRates) => {
-    return currencyRates.rates[currencyConverter.selectedTarget];
+    return currencyRates.rates[currencyConverter.targetCurrency];
   },
 );

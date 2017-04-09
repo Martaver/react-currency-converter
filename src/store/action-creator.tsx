@@ -1,33 +1,33 @@
 export type EmptyActionCreator<T extends string> = {
-  (): { type: T }, type: T,
+  (): { type: T }, type?: T,
 };
 
-export type PayloadActionCreator<T extends string, P> = {
-  (payload: P): { type: T, payload: P }, type: T,
+export type PayloadActionCreator<T extends string, S, M, P> = {
+  (state: S, meta?: M): { type: T, payload: P }, type?: T,
 };
 
-export type PayloadSelector<P> = (payload: P) => P;
+export type PayloadSelector<S, M, P> = (state: S, meta?: M) => P;
 
-export function createActionCreator<T extends string, P>(
-  type: T, payloadSelector: PayloadSelector<P>,
-): PayloadActionCreator<T, P>;
+export function createActionCreator<T extends string, S, M, P>(
+  type: T, payloadSelector: PayloadSelector<S, M, P>,
+): PayloadActionCreator<T, S, M, P>;
 export function createActionCreator<T extends string>(
   type: T,
 ): EmptyActionCreator<T>;
-export function createActionCreator<T extends string, P>(
-  type: T, payloadSelector?: PayloadSelector<P>,
-): PayloadActionCreator<T, P> | EmptyActionCreator<T> {
+export function createActionCreator<T extends string, S, M, P>(
+  type: T, payloadSelector?: PayloadSelector<S, M, P>,
+): PayloadActionCreator<T, S, M, P> | EmptyActionCreator<T> {
   if (payloadSelector == null) {
-    const actionCreator = (
-      (payload: P) => ({ type })
-    ) as EmptyActionCreator<T>;
+    const actionCreator: EmptyActionCreator<T> =
+      () => ({ type });
     actionCreator.type = type;
+
     return actionCreator;
   } else {
-    const actionCreator = (
-      (payload: P) => ({ type, payload: payloadSelector(payload) })
-    ) as PayloadActionCreator<T, P>;
+    const actionCreator: PayloadActionCreator<T, S, M, P> =
+      (state: S, meta?: M) => ({ type, payload: payloadSelector(state, meta) });
     actionCreator.type = type;
+
     return actionCreator;
   }
 }

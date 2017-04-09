@@ -24,7 +24,7 @@ test('testing action creator currencyRatesFetchSuccess', () => {
   // act
   const actual = actionCreators.loadCurrencyRatesSuccess(results);
   const expected = {
-    type: 'currencyRates/LOAD_CURRENCY_RATES_SUCCESS',
+    type: 'LOAD_CURRENCY_RATES_SUCCESS',
     payload: results,
   };
 
@@ -39,7 +39,7 @@ test('testing action creator currencyRatesFetchError', () => {
   // act
   const actual = actionCreators.loadCurrencyRatesError(errorMessage);
   const expected = {
-    type: 'currencyRates/LOAD_CURRENCY_RATES_ERROR',
+    type: 'LOAD_CURRENCY_RATES_ERROR',
     payload: errorMessage,
   };
 
