@@ -1,6 +1,6 @@
 import {
   convertValueWithBaseRateToTargetRate,
-} from './utils';
+} from '../utils';
 
 describe('convertValueWithBaseRateToTargetRate', () => {
   const testCases: Array<{

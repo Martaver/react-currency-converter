@@ -18,6 +18,7 @@
     "tsc:watch": "tsc --project src/ --noEmit -w",
     "lint": "tslint --project src/tsconfig.json",
     "test": "jest --config jest.json",
+    "test:nocache": "jest --config jest.json --no-cache",
     "test:update": "jest --config jest.json -u",
     "precommit": "yarn run lint",
     "prepush": "yarn run tsc & yarn run test",

@@ -1,5 +1,5 @@
 // MOCKING
-jest.mock('../index', () => {
+jest.mock('../../index', () => {
   return {
     Action: () => ({}),
   };
