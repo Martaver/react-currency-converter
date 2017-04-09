@@ -12,9 +12,6 @@
   "notify": false,
   "verbose": true,
   "globals": {
-    "__TS_CONFIG__": {
-      "module": "commonjs",
-      "jsx": "react"
-    }
+    "__TS_CONFIG__": "<rootDir>/scripts/tsconfig.json"
   }
 }
