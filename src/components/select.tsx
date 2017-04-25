@@ -12,6 +12,9 @@ const Component: React.StatelessComponent<Props> = (
   const handleChange = (ev: React.ChangeEvent<HTMLSelectElement>) => {
     onChange(ev.target.value);
   };
+  const renderOptions = options.map(currency => (
+    <option key={currency}>{currency}</option>
+  ));
 
   return (
     <select
@@ -19,9 +22,7 @@ const Component: React.StatelessComponent<Props> = (
       value={value}
       onChange={handleChange}
     >
-      {options.map(currency =>
-        <option key={currency}>{currency}</option>,
-      )}
+      {renderOptions}
     </select>
   );
 };

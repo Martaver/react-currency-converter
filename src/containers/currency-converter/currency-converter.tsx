@@ -31,7 +31,8 @@ export class CurrencyConverter extends React.Component<Props, {}> {
     return (
       <div className="o-grid o-grid--xsmall-full o-grid--small-full o-grid--medium-full">
         <div className="o-grid__cell u-window-box--medium">
-          <CurrencyInputGroup currencies={currencies}
+          <CurrencyInputGroup
+            currencies={currencies}
             currencyType={baseCurrency}
             onCurrencyTypeChange={onBaseCurrencyChange}
             currencyValue={baseValue}
@@ -44,7 +45,8 @@ export class CurrencyConverter extends React.Component<Props, {}> {
         </div>
 
         <div className="o-grid__cell u-window-box--medium">
-          <CurrencyInputGroup currencies={currencies}
+          <CurrencyInputGroup
+            currencies={currencies}
             currencyType={targetCurrency}
             onCurrencyTypeChange={onTargetCurrencyChange}
             currencyValue={targetValue}

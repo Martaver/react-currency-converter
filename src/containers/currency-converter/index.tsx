@@ -39,23 +39,29 @@ class CurrencyConverterContainer extends React.Component<Props, {}> {
             Example application teaching how to correctly use TypeScript in React & Redux projects.
           </p>
           <p>
-            To learn more about TypeScript Guidelines & Patterns
-             to help you build bug-free React & Redux Apps, check here:<br />
+            Learn more about static typing with TypeScript in "React & Redux" apps here:<br />
             <a
-              href="https://github.com/piotrwitek/react-redux-typescript-patterns/"
-            >React / Redux / TypeScript Patterns</a>
+              href="https://github.com/piotrwitek/react-redux-typescript-guide/"
+            >
+              A comprehensive guide to static typing "React & Redux" apps using TypeScript
+            </a>
           </p>
           <p>
             Async Flows are handled using <a
               href="https://github.com/redux-observable/redux-observable/"
-            >redux-observable</a>
+            >
+              redux-observable
+            </a>
           </p>
         </section>
 
         <section className="u-letter-box--xlarge">
-          <CurrencyConverter currencies={currencies}
-            baseCurrency={baseCurrency} targetCurrency={targetCurrency}
-            baseValue={baseValue} targetValue={targetValue}
+          <CurrencyConverter
+            currencies={currencies}
+            baseCurrency={baseCurrency}
+            targetCurrency={targetCurrency}
+            baseValue={baseValue}
+            targetValue={targetValue}
             onBaseCurrencyChange={changeBaseCurrency}
             onTargetCurrencyChange={changeTargetCurrency}
             onBaseValueChange={changeBaseValue}
