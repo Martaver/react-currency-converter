@@ -1,6 +1,7 @@
 {
   "extends": [
-    "./tslint.all.json"
+    "tslint:all",
+    "tslint-react"
   ],
   "rules": {
     "arrow-parens": false,
